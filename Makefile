@@ -6,7 +6,7 @@
 #    By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/19 13:45:47 by gmolin            #+#    #+#              #
-#    Updated: 2020/01/23 16:58:00 by gmolin           ###   ########.fr        #
+#    Updated: 2020/01/24 15:13:02 by gmolin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,10 +31,10 @@ libftcreator:
 
 clean:
 	rm -f $(OBJS)
-	make clean -C libft
+	make clean -C libftprintf
 
 fclean: clean
 	rm -f $(NAME)
-	make fclean -C libft
+	make fclean -C libftprintf
 	
 re: clean all

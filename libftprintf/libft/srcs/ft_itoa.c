@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 18:14:35 by vkuokka           #+#    #+#             */
-/*   Updated: 2020/01/20 09:46:18 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/24 16:58:18 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,6 @@ static int	ft_isneg(long n)
 	if (n < 0)
 		return (1);
 	return (0);
-}
-
-static int	ft_len(long n)
-{
-	int count;
-
-	count = 1;
-	while (n /= 10)
-		count++;
-	return (count);
 }
 
 char		*ft_itoa(long n)

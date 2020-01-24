@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkuokka <vkuokka@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 10:48:17 by vkuokka           #+#    #+#             */
-/*   Updated: 2019/10/28 14:10:15 by vkuokka          ###   ########.fr       */
+/*   Updated: 2020/01/24 16:58:07 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_len(char const *s, char c)
+static int		ft_nlen(char const *s, char c)
 {
 	size_t	count;
 	size_t	i;
@@ -40,7 +40,7 @@ char			**ft_strsplit(char const *s, char c)
 	size_t	stopper;
 
 	if (!s || !(array = (char **)malloc(sizeof(char *)
-	* ft_len(s, c) + sizeof(char))))
+	* ft_nlen(s, c) + sizeof(char))))
 		return (NULL);
 	i = 0;
 	j = 0;

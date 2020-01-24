@@ -6,7 +6,7 @@
 #    By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/18 11:41:03 by vkuokka           #+#    #+#              #
-#    Updated: 2020/01/23 12:59:31 by gmolin           ###   ########.fr        #
+#    Updated: 2020/01/24 16:58:29 by gmolin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME =	libft.a
 
 SRCS =	srcs/ft_bzero.c \
 		srcs/ft_count_digits.c \
+		srcs/ft_len.c \
 		srcs/ft_memccpy.c \
 		srcs/ft_memchr.c \
 		srcs/ft_memcmp.c \
@@ -24,6 +25,7 @@ SRCS =	srcs/ft_bzero.c \
 		srcs/ft_strclen.c \
 		srcs/ft_strdup.c \
 		srcs/ft_strndup.c \
+		srcs/ft_2dstrndup.c \
 		srcs/ft_strcpy.c \
 		srcs/ft_strcat.c \
 		srcs/ft_strncat.c \
@@ -88,6 +90,7 @@ SRCS =	srcs/ft_bzero.c \
 
 OBJ =	ft_bzero.o \
 		ft_count_digits.o \
+		ft_len.o \
 		ft_memccpy.o \
 		ft_memchr.o \
 		ft_memcmp.o \
@@ -98,6 +101,7 @@ OBJ =	ft_bzero.o \
 		ft_strclen.o \
 		ft_strdup.o \
 		ft_strndup.o \
+		ft_2dstrndup.o \
 		ft_strcpy.o \
 		ft_strcat.o \
 		ft_strncat.o \

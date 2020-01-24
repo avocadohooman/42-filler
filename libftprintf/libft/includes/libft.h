@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 14:38:55 by vkuokka           #+#    #+#             */
-/*   Updated: 2020/01/23 16:55:50 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/24 16:56:18 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ typedef struct		s_list
 
 void				ft_bzero(void *s, size_t n);
 int					ft_count_digits(intmax_t n, intmax_t base);
-int					ft_get_next_line(const int fd, char **line)
+int					ft_len(long n);
+int					ft_get_next_line(const int fd, char **line);
 void				*ft_memccpy(void *dst, const void *src, int c, size_t n);
 void				*ft_memchr(const void *s, int c, size_t n);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
@@ -40,6 +41,7 @@ size_t				ft_strlen(const char *s);
 size_t				ft_strclen(const char *str, char c);
 char				*ft_strdup(const char *s1);
 char				*ft_strndup(const char *s1, int nb);
+char				**ft_2dstrndup(char **str, int n, int row, int len);
 char				*ft_strcpy(char *dst, const char *src);
 char				*ft_strcat(char *s1, const char *s2);
 char				*ft_strncat(char *s1, const char *s2, size_t n);
