@@ -6,128 +6,114 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 15:57:47 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/24 17:26:45 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/25 16:02:36 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-static void		initiate_setup(t_setup *setup)
+static void					initiate_struct(t_map *map, t_piece *piece)
 {
-	setup->board = NULL;
-	setup->p_name = NULL;
-	setup->token = 'X';
-	setup->player = 2;
-	setup->p1start_x = 0;
-	setup->p1start_y = 0;
-	setup->p2start_x = 0;
-	setup->p2start_y = 0;
-	setup->size_x = 0;
-	setup->size_y = 0;
+	map->board = NULL;
+	map->p_name = NULL;
+	map->token = "xX";
+	map->player = 2;
+	map->pos_me_x = 0;
+	map->pos_me_y = 0;
+	map->pos_en_x = 0;
+	map->pos_en_x = 0;
+	map->size_x = 0;
+	map->size_y = 0;
+	piece->piece = NULL;
+	piece->size_x = 0;
+	piece->size_y = 0;
 }
 
-static	void		starting_pos(t_setup *setup, int i, int k, char token)
+static	void				fetch_player(t_map *map, int fd)
 {
+	char	*line;
 
-	while (setup->board[k])
+	ft_get_next_line(fd, &line);
+	if (line[10] != '1' || !line)
+		ft_printf("error: bad player info\n");
+	if (ft_strcmp("gmolin.filler]", &line[23]) == 0)
 	{
-		i = 0;
-		while (setup->board[k][i])
+		map->player = 1;
+		map->token = "oO";
+	}
+	ft_strdel(&line);
+}
+
+static	int					input_scan(t_map *map, t_piece *piece, int fd)
+{
+	char *line;
+
+	while (ft_get_next_line(fd, &line) > 0)
+	{
+		if (ft_strncmp(line, "Plateau", 6) == 0)
 		{
-			if (setup->board[k][i] == token)
-			{
-				if (token == 'O')
-				{
-					setup->p1start_x = i - 4;
-					setup->p1start_y = k - 1;
-				}
-				else 
-				{
-					setup->p2start_x = i - 4;
-					setup->p2start_y = k - 1;
-				}
-			}
-			i++;
+			map_mode(map, line, fd);
+			ft_strdel(&line);
 		}
-		k++;
+		else if (ft_strncmp("Piece", line, 4) == 0)
+		{
+		 	piece_mode(piece, line, fd);
+		 	return (1);
+		}
+		else
+			ft_strdel(&line);
 	}
+	return (0);
 }
 
-static	void		fetch_setup(t_setup *setup, char *file)
+void 	test_printing(t_map *map, t_piece *piece)
 {
-	int		i;
-	int 	k;
-
-	k = 0;
-	i = 0;
-	setup->board = ft_strsplit(file, '\n');
-	// ft_printf("P%c \n", setup->board[6][10]);
-	// ft_printf("Name: %s\n", &setup->board[6][23]);
-	if (ft_strcmp("gmolin.filler]", &setup->board[6][23]) == 0)
-	{
-		setup->player = 1;
-		setup->token = 'O';
-	}
-	// ft_printf("Player number: %d\n", setup->player);
-	// ft_printf("%s\n", &setup->board[9][8]);
-	setup->size_x = ft_atoi(&setup->board[9][8]);
-	i = 8 + ft_len(setup->size_x);
-	setup->size_y = ft_atoi(&setup->board[9][i]);
-	// ft_printf("Board size:\nX %d\nY %d\n", setup->size_x, setup->size_y);
-	setup->board = ft_2dstrndup(setup->board, 10, setup->size_y + 1, setup->size_x + 4);
-	// k = 0;
-	// while(setup->board[k])
-	// {
-	// 	ft_printf("%s %d\n", setup->board[k], k);
-	// 	k++;
-	// }
-	starting_pos(setup, 0, 0, setup->token);
-	starting_pos(setup, 0, 0, 'X');
-	// ft_printf("START POSITION:\nX: %d\nY: %d\n", setup->p1start_x, setup->p1start_y);
-	// ft_printf("START POSITION:\nX: %d\nY: %d\n", setup->p2start_x, setup->p2start_y);
-}
-
-static char		*read_file(int fd)
-{
-	char		rline[BUFF_SIZE + 1];
-	char		*file;
-	char		*tmp;
-	int			count;
-	size_t		i;
+	int i;
 
 	i = 0;
-	if (!(file = ft_strnew(0)))
-		return (NULL);
-	while ((count = read(fd, rline, BUFF_SIZE)) > 0)
-	{
-		rline[count] = '\0';
-		i += count;
-		tmp = file;
-		file = ft_strjoin(file, rline);
-		free(tmp);
-	}
-	if (count < 0)
-		return (NULL);
-	return (file);
+	ft_printf("********* CURRENT BOARD: *********\n");
+    while (i < map->size_y)
+    {
+        ft_printf("%2d %s\n", i, map->board[i]);
+        i++;
+    }	
+	ft_printf("********* GAME STATS: *********\n");
+	ft_printf("PLAYER: %d\n", map->player);
+	ft_printf("TOKENS: %s\n", map->token);
+	ft_printf("MAP SIZE:\nY: %d\nX: %d\n", map->size_y, map->size_x);
+    ft_printf("CURRENT POS ME:\nX:%d\nY:%d\n", map->pos_me_x, map->pos_me_y);
+    ft_printf("CURRENT POS EN:\nX:%d\nY:%d\n", map->pos_en_x, map->pos_en_y);
+	ft_printf("********* CURRENT PIECE: *********\n");
+	i = 0;
+    while (i < piece->size_y)
+    {
+        ft_printf("%d %s\n", i, piece->piece[i]);
+        i++;
+    }
+	ft_printf("PIECE SIZE:\nY: %d\nX: %d\n", piece->size_y, piece->size_x);
 }
 
-int				main(int argc, char **argv)
+int							main(int argc, char **argv)
 {
-	int		fd;
-	char	*file;
-	t_setup *setup;
-	int		k;
+	t_map	*map;
+	t_piece	*piece;
+	int		fd; // only for testing purposes
 
-	k = 0;
-	if (!(setup = malloc(sizeof(t_setup))))
+	argc += argc; // only for testing purposes 
+	fd = open(argv[1], O_RDONLY); // only for testing purposes
+	if (!(map = malloc(sizeof(t_map))))
 		return (0);
-	initiate_setup(setup);
-	fd = open(argv[1], O_RDONLY);
-	if (!(file = read_file(fd)))
-		ft_printf("error\n");
-	fetch_setup(setup, file);
-	ft_strdel(&file);
-	close(fd);
-	free(setup);
+	if (!(piece = malloc(sizeof(t_piece))))
+		return (0);
+	initiate_struct(map, piece);
+	fetch_player(map, fd);
+	// while (1)
+	// {
+		input_scan(map, piece, fd);
+	// }
+	test_printing(map, piece);
+	free (map);
+	free (piece);
+	free (piece->piece);
 	return (0);
 }
