@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 13:50:13 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/27 15:38:19 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/27 17:33:03 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static  void        fetch_map(t_map *map, char  *line, int fd)
         ft_strdel(&line);
     }
     map->board[k] = NULL;
-	map->check_sum = count_pieces(map->board, map->token);
+	map->check_sum = count_pieces(map->board, map->token_me);
 }
 
 static  void        fetch_pos(t_map *map)
@@ -56,12 +56,12 @@ static  void        fetch_pos(t_map *map)
         x = 0;
         while (x < map->size_x && map->board[y][x])
         {
-            if (ft_strchr("oO", map->board[y][x]))
+            if (ft_strchr(map->token_me, map->board[y][x]))
             {
                 map->pos_me_x = x;
                 map->pos_me_y = y;
             }
-            else if (ft_strchr("xX", map->board[y][x]) && token == 0)
+            else if (ft_strchr(map->token_en, map->board[y][x]) && token == 0)
             {
                 map->pos_en_x = x;
                 map->pos_en_y = y;

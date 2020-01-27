@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 14:42:21 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/27 16:44:55 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/27 17:39:01 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ typedef	struct	s_map
 	char	**board;
 	char	**board_backup;
 	char	*p_name;
-	char	*token;
+	char	*token_me;
+	char	*token_en;
 	int 	player;
 	int		pos_me_x;
 	int		pos_me_y;
@@ -60,7 +61,7 @@ typedef	struct	s_piece
 ** ------ MAIN.C ------
 */
 
-int					main(int argc, char **argv);
+int					main(void);
 
 /*
 ** ------ MAP_MODE.C ------

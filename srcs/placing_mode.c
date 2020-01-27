@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 10:09:01 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/27 16:44:55 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/27 17:31:25 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ static	int				validator(t_map *map, t_piece *piece)
 	int		pieces;
 
 	goal = map->check_sum + (piece->check_sum - 1);
-	current = count_pieces(map->board, "oO*");
+	if (map->player == 1)
+		current = count_pieces(map->board, "oO*");
+	else if (map->player == 2)
+		current = count_pieces(map->board, "xX*");
 	pieces = count_pieces(map->board, "*");
 	if (goal == current && pieces == piece->check_sum)
 		return (1);
@@ -40,9 +43,9 @@ static 	int				placing(t_map *map, t_piece *piece, int my, int mx)
 		while (map->board[my][mx] && piece->piece[y][x])
 		{
 				
-			if (!(ft_strchr("xX", map->board[my][mx])) && map->board[my][mx])
+			if (!(ft_strchr(map->token_en, map->board[my][mx])) && map->board[my][mx])
 			{
-				while (ft_strchr("oO", map->board[my][mx]) && piece->piece[y][x] == '.')
+				while (ft_strchr(map->token_me, map->board[my][mx]) && piece->piece[y][x] == '.')
 					mx++;
 				map->board[my][mx] = piece->piece[y][x];
 			}
