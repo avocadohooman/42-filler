@@ -1,0 +1,1 @@
+./gmolin.filler test_folder/2_small_map.txt 

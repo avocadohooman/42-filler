@@ -6,15 +6,16 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 15:57:47 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/25 16:02:36 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/27 16:42:57 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-static void					initiate_struct(t_map *map, t_piece *piece)
+static void					initiate_struct_map(t_map *map)
 {
 	map->board = NULL;
+	map->board_backup = NULL;
 	map->p_name = NULL;
 	map->token = "xX";
 	map->player = 2;
@@ -24,9 +25,19 @@ static void					initiate_struct(t_map *map, t_piece *piece)
 	map->pos_en_x = 0;
 	map->size_x = 0;
 	map->size_y = 0;
+	map->check_sum = 0;
+}
+
+static void					initiate_struct_piece(t_piece *piece)
+{
 	piece->piece = NULL;
 	piece->size_x = 0;
 	piece->size_y = 0;
+	piece->check_sum = 0;
+	piece->distance_x = 0;
+	piece->distance_y = 0;
+	piece->final_x = 0;
+	piece->final_y = 0;
 }
 
 static	void				fetch_player(t_map *map, int fd)
@@ -76,7 +87,8 @@ void 	test_printing(t_map *map, t_piece *piece)
     {
         ft_printf("%2d %s\n", i, map->board[i]);
         i++;
-    }	
+    }
+	ft_printf("AMOUNT OF TOKENS:\n%d\n", map->check_sum);	
 	ft_printf("********* GAME STATS: *********\n");
 	ft_printf("PLAYER: %d\n", map->player);
 	ft_printf("TOKENS: %s\n", map->token);
@@ -91,6 +103,17 @@ void 	test_printing(t_map *map, t_piece *piece)
         i++;
     }
 	ft_printf("PIECE SIZE:\nY: %d\nX: %d\n", piece->size_y, piece->size_x);
+	ft_printf("AMOUNT OF PIECE BLOCKS:\n%d\n", piece->check_sum);	
+	ft_printf("PIECE REAL STARTING POS:\nX %d\nY %d\n", piece->distance_x, piece->distance_y);
+	ft_printf("********* PIECE PLACED: *********\n");
+	i = 0;
+	while (i < map->size_y)
+    {
+        ft_printf("%2d %s\n", i, map->board[i]);
+        i++;
+    }
+	ft_printf("********* RETURN VALUE: *********\n");
+	ft_printf("RETURN VALUE:\nY %d\nX %d\n", piece->final_y, piece->final_x);
 }
 
 int							main(int argc, char **argv)
@@ -101,19 +124,25 @@ int							main(int argc, char **argv)
 
 	argc += argc; // only for testing purposes 
 	fd = open(argv[1], O_RDONLY); // only for testing purposes
+	// fd = 0;
 	if (!(map = malloc(sizeof(t_map))))
 		return (0);
 	if (!(piece = malloc(sizeof(t_piece))))
 		return (0);
-	initiate_struct(map, piece);
+	initiate_struct_map(map);
+	initiate_struct_piece(piece);
 	fetch_player(map, fd);
 	// while (1)
 	// {
 		input_scan(map, piece, fd);
+		placing_mode(map, piece, 0, 0);
+		return_coordinates(map, piece);
+		ft_printf("%d %d\n", piece->final_y, piece->final_x);
+		// exit(1);
 	// }
-	test_printing(map, piece);
+	// test_printing(map, piece);
 	free (map);
 	free (piece);
-	free (piece->piece);
+	//free (piece->piece);
 	return (0);
 }

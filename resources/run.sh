@@ -1,0 +1,1 @@
+./filler_vm -p2 players/gmolin.filler -p1 players/champely.filler -f maps/map01 

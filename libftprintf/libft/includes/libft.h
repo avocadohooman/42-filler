@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 14:38:55 by vkuokka           #+#    #+#             */
-/*   Updated: 2020/01/25 13:25:10 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/27 14:23:20 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ size_t				ft_strlen(const char *s);
 size_t				ft_strclen(const char *str, char c);
 char				*ft_strdup(const char *s1);
 char				*ft_strndup(const char *s1, int nb);
-char				**ft_2dstrndup(char **str, int n, int row, int len);
+char				**ft_2dstrdup(char **str);
 char				*ft_strcpy(char *dst, const char *src);
 char				*ft_strcat(char *s1, const char *s2);
 char				*ft_strncat(char *s1, const char *s2, size_t n);

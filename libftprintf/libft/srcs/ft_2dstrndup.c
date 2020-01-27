@@ -6,13 +6,13 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:03:42 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/24 16:39:13 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/27 14:21:19 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char			**ft_2dstrndup(char **str, int n, int row, int len)
+char			**ft_2dstrdup(char **str)
 {
 	int		i;
 	int		j;
@@ -21,18 +21,20 @@ char			**ft_2dstrndup(char **str, int n, int row, int len)
 
 	i = 0;
 	k = 0;
-	if (!(new = (char**)malloc(sizeof(char*) * row + 1)))
+	while (str[k])
+		k++;
+	if (!(new = (char**)malloc(sizeof(char*) * k + 1)))
 		return (NULL);
-	while(str[n])
+	k = 0;
+	while(str[k])
 	{
 		j = 0;
 		i = 0;
-		new[k] = (char*)malloc(sizeof(char) * len + 1);
-		while (str[n][i])
-			new[k][j++] = str[n][i++];
+		new[k] = (char*)malloc(sizeof(char) * ft_strlen(str[k]) + 1);
+		while (str[k][i])
+			new[k][j++] = str[k][i++];
 		new[k][j] = '\0';
 		k++;
-		n++;
 	}
 	new[k] = NULL;
 	return (new);
