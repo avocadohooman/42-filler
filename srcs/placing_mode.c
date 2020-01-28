@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 10:09:01 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/27 17:31:25 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/28 16:27:18 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static	int				validator(t_map *map, t_piece *piece)
 
 	goal = map->check_sum + (piece->check_sum - 1);
 	if (map->player == 1)
-		current = count_pieces(map->board, "oO*");
+		current = count_pieces(map->board, "oO*", 0, 0);
 	else if (map->player == 2)
-		current = count_pieces(map->board, "xX*");
-	pieces = count_pieces(map->board, "*");
+		current = count_pieces(map->board, "xX*", 0, 0);
+	pieces = count_pieces(map->board, "*", 0, 0);
 	if (goal == current && pieces == piece->check_sum)
 		return (1);
 	return (0);

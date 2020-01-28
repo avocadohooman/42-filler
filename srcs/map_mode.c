@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 13:50:13 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/27 17:33:03 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/28 15:03:08 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static  void        fetch_map(t_map *map, char  *line, int fd)
         ft_strdel(&line);
     }
     map->board[k] = NULL;
-	map->check_sum = count_pieces(map->board, map->token_me);
+	map->check_sum = count_pieces(map->board, map->token_me, 0, 0);
 }
 
 static  void        fetch_pos(t_map *map)

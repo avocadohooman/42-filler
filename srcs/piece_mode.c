@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:41:48 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/27 17:33:03 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/28 15:02:21 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static  void        fetch_piece(t_piece *piece, char  *line, int fd)
         k++;
     }
     piece->piece[k] = NULL;
-	piece->check_sum = count_pieces(piece->piece, "*");
+	piece->check_sum = count_pieces(piece->piece, "*", 0, 0);
 }
 
 

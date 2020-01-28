@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 14:42:21 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/27 17:39:01 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/28 16:53:01 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef	struct	s_map
 	char	*p_name;
 	char	*token_me;
 	char	*token_en;
+	int		**heat;
 	int 	player;
 	int		pos_me_x;
 	int		pos_me_y;
@@ -61,7 +62,8 @@ typedef	struct	s_piece
 ** ------ MAIN.C ------
 */
 
-int					main(void);
+int					main(int argc, char **argv);
+// int					main(void);
 
 /*
 ** ------ MAP_MODE.C ------
@@ -82,10 +84,17 @@ void                piece_mode(t_piece *piece, char *line, int fd);
 int					placing_mode(t_map *map, t_piece *piece, int y, int x);
 
 /*
+** ------ RETURNING_PIECES.C ------
+*/
+
+void				return_coordinates(t_map *map, t_piece *piece);
+void        		print_result(t_piece *piece, t_map *map);
+
+
+/*
 ** ------ TOOLS.C ------
 */
 
-int					count_pieces(char **area, char *needle);
-void				return_coordinates(t_map *map, t_piece *piece);
+int					count_pieces(char **area, char *needle, int min_y, int min_x);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 15:57:47 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/27 17:45:00 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/28 16:53:19 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ static void					initiate_struct_map(t_map *map)
 	map->board = NULL;
 	map->board_backup = NULL;
 	map->p_name = NULL;
-	map->token_me = "xX";
-	map->token_en = "oO";
+	map->token_me = NULL;
+	map->token_en = NULL;
+	map->heat = NULL;
 	map->player = 0;
 	map->pos_me_x = 0;
 	map->pos_me_y = 0;
@@ -48,11 +49,17 @@ static	void				fetch_player(t_map *map, int fd)
 	ft_get_next_line(fd, &line);
 	if (line[10] != '1' || !line)
 		ft_printf("error: bad player info\n");
-	if (ft_strcmp("gmolin.filler]", &line[23]) == 0)
+	if (ft_strstr(line, "gmolin.filler"))
 	{
 		map->player = 1;
 		map->token_me = "oO";
 		map->token_en = "xX";
+	}
+	else
+	{
+		map->player = 2;
+		map->token_me = "xX";
+		map->token_en = "oO";
 	}
 	ft_strdel(&line);
 }
@@ -118,15 +125,17 @@ void 	test_printing(t_map *map, t_piece *piece)
 	ft_printf("RETURN VALUE:\nY %d\nX %d\n", piece->final_y, piece->final_x);
 }
 
-int							main(void)
+
+int						main(int argc, char **argv)
+// int							main(void)
 {
 	t_map	*map;
 	t_piece	*piece;
 	int		fd; // only for testing purposes
 
-	//argc += argc; // only for testing purposes 
-	//fd = open(argv[1], O_RDONLY); // only for testing purposes
-	fd = 0;
+	argc += argc; // only for testing purposes 
+	fd = open(argv[1], O_RDONLY); // only for testing purposes
+	// fd = 0;
 	if (!(map = malloc(sizeof(t_map))))
 		return (0);
 	if (!(piece = malloc(sizeof(t_piece))))
@@ -134,15 +143,15 @@ int							main(void)
 	initiate_struct_map(map);
 	initiate_struct_piece(piece);
 	fetch_player(map, fd);
-	while (1)
-	{
+	// while (1)
+	// {
 		input_scan(map, piece, fd);
 		placing_mode(map, piece, 0, 0);
 		return_coordinates(map, piece);
-		ft_printf("%d %d\n", piece->final_y, piece->final_x);
-		exit(1);
-	}
-	// test_printing(map, piece);
+		print_result(piece, map);
+		//exit(1);
+	// }
+	test_printing(map, piece);
 	free (map);
 	free (piece);
 	free (piece->piece);
