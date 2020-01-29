@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 15:57:47 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/29 18:17:20 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/29 20:32:41 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static	int					input_scan(t_map *map, t_piece *piece, int fd)
 {
 	char *line;
 
+	piece->piece = NULL;
 	while (ft_get_next_line(fd, &line) > 0)
 	{
 		if (ft_strncmp(line, "Plateau", 6) == 0)
@@ -93,8 +94,8 @@ void 	test_printing(t_map *map, t_piece *piece, t_heat *heat)
         ft_printf("%2d %s\n", i, map->board[i]);
         i++;
     }
-	ft_printf("********* RETURN VALUE: *********\n");
-	ft_printf("RETURN VALUE:\nY %d\nX %d\n", piece->final_y, piece->final_x);
+	// ft_printf("********* RETURN VALUE: *********\n");
+	// ft_printf("RETURN VALUE:\nY %d\nX %d\n", piece->final_y, piece->final_x);
 }
 
 
@@ -109,7 +110,9 @@ int						main(int argc, char **argv)
 	argc += argc; // only for testing purposes 
 	fd = open(argv[1], O_RDONLY); // only for testing purposes
 	// fd = 0;
-	if (!(map = malloc(sizeof(t_map))) || !(heat = malloc(sizeof(t_heat))))
+	if (!(map = malloc(sizeof(t_map))))
+		return (0);
+	if (!(heat = malloc(sizeof(t_heat))))
 		return (0);
 	if (!(piece = malloc(sizeof(t_piece))))
 		return (0);

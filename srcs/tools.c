@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 09:25:45 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/29 18:18:18 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/29 19:54:47 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void				tailor(t_piece *piece)
 	int	flag;
 
 	y = 0;
-	tmp = 0;
+	tmp = piece->size_x;
 	flag = 0;
 	while (piece->piece[y])
 	{
@@ -95,5 +95,5 @@ void				tailor(t_piece *piece)
 		}
 		y++;
 	}
-	ft_printf("POS TRIM X: %d\nX: %d\nSIZE X: %d\nPOS TRIM Y: %d\n", piece->trim_x, x, piece->size_x, piece->trim_y);
+	// ft_printf("POS TRIM X: %d\nX: %d\nSIZE X: %d\nPOS TRIM Y: %d\n", piece->trim_x, x, piece->size_x, piece->trim_y);
 }

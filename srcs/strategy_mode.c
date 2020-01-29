@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 11:35:16 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/29 18:12:20 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/29 19:54:04 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,10 @@ static void		heat_map(t_map *map, t_heat *heat)
 void			strategy_mode(t_map *map, t_heat *heat)
 {
 	int	i = 0;
-	while (i < map->size_y)
-    {
-        ft_printf("%2d %s\n", i, map->board[i]);
-        i++;
-    }
+	// while (i < map->size_y)
+    // {
+    //     ft_printf("%2d %s\n", i, map->board[i]);
+    //     i++;
+    // }
 	heat_map(map, heat);
-	
 }

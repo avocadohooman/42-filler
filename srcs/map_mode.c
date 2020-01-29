@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 13:50:13 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/29 18:16:53 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/29 20:32:35 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@ static  void        fetch_map_size(t_map *map, char *line)
     map->size_y = ft_atoi(&line[8]);
     i = 8 + ft_len(map->size_y);
     map->size_x = ft_atoi(&line[i]);
+    ft_printf("y: %d\nx: %d\n", map->size_y, map->size_x);
 }
 
 static  void        fetch_map(t_map *map, char  *line, int fd)
 {
-    int     k;
+   int     k;
 
     k = -1;
     ft_get_next_line(fd, &line);
@@ -32,10 +33,7 @@ static  void        fetch_map(t_map *map, char  *line, int fd)
     while (++k <= map->size_y - 1)
     {
         ft_get_next_line(fd, &line);
-        if (map->size_y > 999)
-            map->board[k] = ft_strdup((const char*)&line[5]);
-        else 
-            map->board[k] = ft_strdup((const char*)&line[4]);
+        map->board[k] = ft_strdup(&line[4]);
         ft_strdel(&line);
     }
 	map->board[k] = NULL;
