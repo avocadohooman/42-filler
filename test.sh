@@ -1,1 +1,1 @@
-./gmolin.filler maps_testing/5_small_map.txt 
+./gmolin.filler maps_testing/3_small_map.txt 

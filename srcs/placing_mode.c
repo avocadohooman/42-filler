@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 10:09:01 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/28 16:27:18 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/29 11:36:47 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,17 @@ static 	int				placing(t_map *map, t_piece *piece, int my, int mx)
 
 	y = 0;
 	pos_x = mx;
-	while (map->board[my] && piece->piece[y])
+	while (map->board[my] && piece->p_trimmed[y])
 	{
 		x = 0;
-		while (map->board[my][mx] && piece->piece[y][x])
+		while (map->board[my][mx] && piece->p_trimmed[y][x])
 		{
 				
 			if (!(ft_strchr(map->token_en, map->board[my][mx])) && map->board[my][mx])
 			{
-				while (ft_strchr(map->token_me, map->board[my][mx]) && piece->piece[y][x] == '.')
+				while (ft_strchr(map->token_me, map->board[my][mx]) && piece->p_trimmed[y][x] == '.')
 					mx++;
-				map->board[my][mx] = piece->piece[y][x];
+				map->board[my][mx] = piece->p_trimmed[y][x];
 			}
 			x++;
 			mx++;

@@ -6,41 +6,11 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 15:57:47 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/28 16:53:19 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/29 17:46:15 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
-
-static void					initiate_struct_map(t_map *map)
-{
-	map->board = NULL;
-	map->board_backup = NULL;
-	map->p_name = NULL;
-	map->token_me = NULL;
-	map->token_en = NULL;
-	map->heat = NULL;
-	map->player = 0;
-	map->pos_me_x = 0;
-	map->pos_me_y = 0;
-	map->pos_en_x = 0;
-	map->pos_en_x = 0;
-	map->size_x = 0;
-	map->size_y = 0;
-	map->check_sum = 0;
-}
-
-static void					initiate_struct_piece(t_piece *piece)
-{
-	piece->piece = NULL;
-	piece->size_x = 0;
-	piece->size_y = 0;
-	piece->check_sum = 0;
-	piece->distance_x = 0;
-	piece->distance_y = 0;
-	piece->final_x = 0;
-	piece->final_y = 0;
-}
 
 static	void				fetch_player(t_map *map, int fd)
 {
@@ -86,7 +56,7 @@ static	int					input_scan(t_map *map, t_piece *piece, int fd)
 	return (0);
 }
 
-void 	test_printing(t_map *map, t_piece *piece)
+void 	test_printing(t_map *map, t_piece *piece, t_heat *heat)
 {
 	int i;
 
@@ -104,16 +74,18 @@ void 	test_printing(t_map *map, t_piece *piece)
 	ft_printf("MAP SIZE:\nY: %d\nX: %d\n", map->size_y, map->size_x);
     ft_printf("CURRENT POS ME:\nX:%d\nY:%d\n", map->pos_me_x, map->pos_me_y);
     ft_printf("CURRENT POS EN:\nX:%d\nY:%d\n", map->pos_en_x, map->pos_en_y);
-	ft_printf("********* CURRENT PIECE: *********\n");
-	i = 0;
-    while (i < piece->size_y)
-    {
-        ft_printf("%d %s\n", i, piece->piece[i]);
-        i++;
-    }
 	ft_printf("PIECE SIZE:\nY: %d\nX: %d\n", piece->size_y, piece->size_x);
 	ft_printf("AMOUNT OF PIECE BLOCKS:\n%d\n", piece->check_sum);	
 	ft_printf("PIECE REAL STARTING POS:\nX %d\nY %d\n", piece->distance_x, piece->distance_y);
+	ft_printf("********* TRIMMED PIECE: *********\n");
+	i = 0;
+    while (i < piece->trim_y + 1)
+    {
+        ft_printf("%d %s\n", i, piece->p_trimmed[i]);
+        i++;
+    }
+	ft_printf("********* HEAT MAP: *********\n");
+	ft_printf("TOP LEFT: %d\nTOP RIGHT: %d\nBOTTOM LEFT: %d\nBOTTOM RIGHT: %d\n", heat->tl, heat->tr, heat->bl, heat->br);
 	ft_printf("********* PIECE PLACED: *********\n");
 	i = 0;
 	while (i < map->size_y)
@@ -131,29 +103,29 @@ int						main(int argc, char **argv)
 {
 	t_map	*map;
 	t_piece	*piece;
+	t_heat	*heat;
 	int		fd; // only for testing purposes
 
 	argc += argc; // only for testing purposes 
 	fd = open(argv[1], O_RDONLY); // only for testing purposes
 	// fd = 0;
-	if (!(map = malloc(sizeof(t_map))))
+	if (!(map = malloc(sizeof(t_map))) || !(heat = malloc(sizeof(t_heat))))
 		return (0);
 	if (!(piece = malloc(sizeof(t_piece))))
 		return (0);
-	initiate_struct_map(map);
-	initiate_struct_piece(piece);
+	initiate_structs(map, piece, heat);
 	fetch_player(map, fd);
 	// while (1)
 	// {
 		input_scan(map, piece, fd);
+		strategy_mode(map, heat);
 		placing_mode(map, piece, 0, 0);
 		return_coordinates(map, piece);
 		print_result(piece, map);
 		//exit(1);
 	// }
-	test_printing(map, piece);
+	test_printing(map, piece, heat);
 	free (map);
 	free (piece);
-	free (piece->piece);
 	return (0);
 }

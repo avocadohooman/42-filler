@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 14:42:21 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/28 16:53:01 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/29 14:39:17 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,30 @@ typedef	struct	s_map
 	int		check_sum;
 }				t_map;
 
+typedef	struct	s_heat
+{
+	int		tr;
+	int		tl;
+	int		bl;
+	int		br;
+	char	*hot;
+	char	*warm;
+	char	*luke_warm;
+	char	*cold;
+}				t_heat;
+
+
 typedef	struct	s_piece
 {
 	char	**piece;
+	char	**p_trimmed;
 	int		size_x;
 	int		size_y;
 	int		check_sum;
 	int		distance_x;
 	int		distance_y;
+	int		trim_x;
+	int		trim_y;
 	int		final_x;
 	int		final_y;
 }				t_piece;
@@ -62,8 +78,14 @@ typedef	struct	s_piece
 ** ------ MAIN.C ------
 */
 
-int					main(int argc, char **argv);
+int					main(int argc, char **argv); 
 // int					main(void);
+
+/*
+** ------ INITIATE_STRUCT.C ------
+*/
+
+void				initiate_structs(t_map *map, t_piece *piece, t_heat *heat);
 
 /*
 ** ------ MAP_MODE.C ------
@@ -76,6 +98,12 @@ void       			map_mode(t_map *map, char *line, int fd);
 */
 
 void                piece_mode(t_piece *piece, char *line, int fd);
+
+/*
+** ------ STRATEGY_MODE.C ------
+*/
+
+void				strategy_mode(t_map *map, t_heat *heat);
 
 /*
 ** ------ PLACING.C ------
@@ -95,6 +123,8 @@ void        		print_result(t_piece *piece, t_map *map);
 ** ------ TOOLS.C ------
 */
 
+int					heat_counter(t_map *map, int start_y, int start_x);
 int					count_pieces(char **area, char *needle, int min_y, int min_x);
+void				tailor(t_piece *pieces);
 
 #endif
