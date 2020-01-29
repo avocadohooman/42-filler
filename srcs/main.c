@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 15:57:47 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/29 20:32:41 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/29 20:35:00 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,10 +122,10 @@ int						main(int argc, char **argv)
 	// {
 		input_scan(map, piece, fd);
 		strategy_mode(map, heat);
+		test_printing(map, piece, heat);
 		placing_mode(map, piece, 0, 0);
 		return_coordinates(map, piece);
 		print_result(piece, map);
-		test_printing(map, piece, heat);
 		//exit(1);
 	// }
 	free (map);
