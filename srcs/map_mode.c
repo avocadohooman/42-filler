@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 13:50:13 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/29 11:42:05 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/29 18:16:53 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,11 @@ static  void        fetch_map_size(t_map *map, char *line)
 static  void        fetch_map(t_map *map, char  *line, int fd)
 {
     int     k;
-    int     i;
 
     k = -1;
     ft_get_next_line(fd, &line);
     ft_strdel(&line);
-    map->board = (char**)malloc(sizeof(char*) * map->size_y + 1);
+    map->board = (char**)malloc(sizeof(char*) * (map->size_y) + 1);
     while (++k <= map->size_y - 1)
     {
         ft_get_next_line(fd, &line);
@@ -39,7 +38,7 @@ static  void        fetch_map(t_map *map, char  *line, int fd)
             map->board[k] = ft_strdup((const char*)&line[4]);
         ft_strdel(&line);
     }
-    map->board[k] = NULL;
+	map->board[k] = NULL;
 	map->check_sum = count_pieces(map->board, map->token_me, 0, 0);
 }
 

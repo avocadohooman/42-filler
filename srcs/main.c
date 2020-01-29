@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 15:57:47 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/29 17:46:15 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/29 18:17:20 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,9 +122,9 @@ int						main(int argc, char **argv)
 		placing_mode(map, piece, 0, 0);
 		return_coordinates(map, piece);
 		print_result(piece, map);
+		test_printing(map, piece, heat);
 		//exit(1);
 	// }
-	test_printing(map, piece, heat);
 	free (map);
 	free (piece);
 	return (0);

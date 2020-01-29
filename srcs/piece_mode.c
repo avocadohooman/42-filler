@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:41:48 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/29 17:42:03 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/29 18:06:49 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void			trim_piece(t_piece *piece)
 
 	y = 0;
 	tmp = piece->trim_x;
-	piece->p_trimmed = (char**)malloc(sizeof(char*) * piece->trim_y + 1);
+	piece->p_trimmed = (char**)malloc(sizeof(char*) * (piece->size_y - piece->trim_y) + 1);
 	while (y < piece->trim_y + 1)
 	{
 		x = 0;
