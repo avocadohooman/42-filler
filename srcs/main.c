@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 15:57:47 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/29 20:35:00 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/30 14:22:44 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void 	test_printing(t_map *map, t_piece *piece, t_heat *heat)
 	ft_printf("AMOUNT OF PIECE BLOCKS:\n%d\n", piece->check_sum);	
 	ft_printf("PIECE REAL STARTING POS:\nX %d\nY %d\n", piece->distance_x, piece->distance_y);
 	ft_printf("********* TRIMMED PIECE: *********\n");
+	ft_printf("Trim size x %d\nTrim size y %d\nPiece start x %d\nPiece start y %d\nPiece end x %d\nPiece end y %d\n", piece->trim_size_x, piece->trim_size_y, piece->start_x, piece->start_y, piece->trim_x, piece->trim_size_y);
 	i = 0;
     while (i < piece->trim_y + 1)
     {
@@ -122,9 +123,9 @@ int						main(int argc, char **argv)
 	// {
 		input_scan(map, piece, fd);
 		strategy_mode(map, heat);
-		test_printing(map, piece, heat);
 		placing_mode(map, piece, 0, 0);
 		return_coordinates(map, piece);
+		test_printing(map, piece, heat);
 		print_result(piece, map);
 		//exit(1);
 	// }

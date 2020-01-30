@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 12:25:16 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/29 19:37:59 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/30 13:49:58 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,12 @@ static void					initiate_struct_piece(t_piece *piece)
 	piece->check_sum = 0;
 	piece->distance_x = 0;
 	piece->distance_y = 0;
+	piece->start_x = 0;
+	piece->start_y = 0;
 	piece->trim_x = 0;
 	piece->trim_y = 0;
+	piece->trim_size_x = 0;
+	piece->trim_size_y = 0;
 	piece->final_x = 0;
 	piece->final_y = 0;
 }

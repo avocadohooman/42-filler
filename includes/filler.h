@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 14:42:21 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/29 19:59:50 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/30 13:50:17 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,12 @@ typedef	struct	s_piece
 	int		check_sum;
 	int		distance_x;
 	int		distance_y;
+	int		start_x;
+	int		start_y;
 	int		trim_x;
 	int		trim_y;
+	int		trim_size_x;
+	int		trim_size_y;
 	int		final_x;
 	int		final_y;
 }				t_piece;

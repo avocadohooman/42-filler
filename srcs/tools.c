@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 09:25:45 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/29 19:54:47 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/30 14:30:05 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,36 +64,28 @@ int					count_pieces(char **area, char *needle, int min_y, int min_x)
 
 void				tailor(t_piece *piece)
 {
-	int x;
-	int y;
-	int tmp;
-	int	flag;
+	int		y;
+	int		x;
 
-	y = 0;
-	tmp = piece->size_x;
-	flag = 0;
-	while (piece->piece[y])
+	y = -1;
+	piece->start_x = piece->size_x;
+	piece->start_y = piece->size_y;
+	while (++y < piece->size_y)
 	{
-		x = 0;
-		while (piece->piece[y][x])
-		{
-			if (piece->piece[y][x] == '*' && piece->piece[y][x - 1] != '*')
+		x = -1;
+		while (++x < piece->size_x)
+			if (piece->piece[y][x] == '*')
 			{
-				if (x < piece->size_x)
-				{
-					if (x > tmp && flag == 0)
-					{
-						tmp = x;
-						flag = 1;
-					}	
-					(x < tmp && flag == 1) ? piece->trim_x = x : 0;
-					(x < piece->size_x && flag == 0) ? piece->trim_x = x : 0;
-				}
-				(y < piece->size_y) ? piece->trim_y = y : 0;
+				if (x < piece->start_x)
+					piece->start_x = x;
+				if (x > piece->trim_x)
+					piece->trim_x = x;
+				if (y < piece->start_y)
+					piece->start_y = y;
+				if (y > piece->trim_y)
+					piece->trim_y = y;
 			}
-			x++;
-		}
-		y++;
 	}
-	// ft_printf("POS TRIM X: %d\nX: %d\nSIZE X: %d\nPOS TRIM Y: %d\n", piece->trim_x, x, piece->size_x, piece->trim_y);
+	piece->trim_size_x = (piece->trim_x - piece->start_x) + 1;
+	piece->trim_size_y = (piece->trim_y - piece->start_y) + 1;
 }

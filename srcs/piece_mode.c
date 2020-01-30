@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:41:48 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/29 19:49:56 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/30 14:17:46 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,16 +71,17 @@ static void			trim_piece(t_piece *piece)
 	int tmp;
 
 	y = 0;
-	tmp = piece->trim_x;
-	piece->p_trimmed = (char**)malloc(sizeof(char*) * (piece->size_y - piece->trim_y) + 1);
-	while (y < piece->trim_y + 1)
+	tmp = piece->start_x;
+	piece->p_trimmed = (char**)malloc(sizeof(char*) * piece->trim_size_y + 1);
+	while (y < piece->trim_size_y)
 	{
 		x = 0;
-		piece->trim_x = tmp;
-		piece->p_trimmed[y] = (char*)malloc(sizeof(char) * (piece->size_x - piece->trim_x) + 1);
-		while (x < piece->size_x && piece->piece[y][piece->trim_x])
-			piece->p_trimmed[y][x++] = piece->piece[y][piece->trim_x++];
+		piece->start_x = tmp;
+		piece->p_trimmed[y] = (char*)malloc(sizeof(char) * piece->trim_size_x + 1);
+		while (x < piece->trim_size_x)
+			piece->p_trimmed[y][x++] = piece->piece[piece->start_y][piece->start_x++];
 		piece->p_trimmed[y][x] = '\0';
+		piece->start_y++;
 		y++;
 	}
 	piece->p_trimmed[y] = NULL;

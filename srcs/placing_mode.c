@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 10:09:01 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/29 11:36:47 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/30 14:35:28 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,7 @@ static 	int				placing(t_map *map, t_piece *piece, int my, int mx)
 		{
 				
 			if (!(ft_strchr(map->token_en, map->board[my][mx])) && map->board[my][mx])
-			{
-				while (ft_strchr(map->token_me, map->board[my][mx]) && piece->p_trimmed[y][x] == '.')
-					mx++;
 				map->board[my][mx] = piece->p_trimmed[y][x];
-			}
 			x++;
 			mx++;
 		}
