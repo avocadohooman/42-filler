@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 14:42:21 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/30 17:49:04 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/30 23:16:00 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,11 +119,25 @@ void                piece_mode(t_piece *piece, char *line, int fd);
 void				strategy_mode(t_map *map, t_heat *heat);
 
 /*
-** ------ PLACING_MODE_TOP.C ------
+** ------ PLACING_DISPATCHER.C ------
 */
 
 int					placing_dispatcher(t_map *map, t_piece *piece, t_heat *heat);
 
+/*
+** ------ PLACING_ENGINE_TOP.C ------
+*/
+
+int					placing_tl(t_map *map, t_piece *piece, int start_y, int start_x);
+int					placing_tr(t_map *map, t_piece *piece, int start_y, int start_x);
+
+
+/*
+** ------ PLACING_ENGINE_BOTTOM.C ------
+*/
+
+int					placing_bl(t_map *map, t_piece *piece, int start_y, int start_x);
+int					placing_br(t_map *map, t_piece *piece, int start_y, int start_x);
 
 /*
 ** ------ RETURNING_PIECES.C ------

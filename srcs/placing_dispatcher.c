@@ -6,16 +6,61 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 10:09:01 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/30 17:57:56 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/30 23:26:57 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
+int static				bottom_right(t_map *map, t_piece *piece, int start_y, int start_x)
+{
+	if (!placing_br(map, piece, start_y, start_x))
+		if (!placing_tl(map, piece, start_y, start_x))
+			if (!placing_bl(map, piece, start_y, start_x))
+				if (!placing_tr(map, piece, start_y, start_x))
+					return (0);
+	return (1);
+}
+
+int static				bottom_left(t_map *map, t_piece *piece, int start_y, int start_x)
+{
+	if (!placing_bl(map, piece, start_y,  start_x))
+		if (!placing_tr(map, piece, start_y, start_x))
+			if (!placing_br(map, piece, start_y, start_x))
+				if (!placing_tl(map, piece, start_y, start_x))
+					return (0);
+	return (1);
+}
+
+int static				top_right(t_map *map, t_piece *piece, int start_y, int start_x)
+{
+	if (!placing_tr(map, piece, start_y, start_x))
+		if (!placing_bl(map, piece, start_y, start_x))
+			if (!placing_tl(map, piece, start_y, start_x))
+				if (!placing_br(map, piece, start_y, start_x))
+					return (0);
+	return (1);
+}
+
+int static				top_left(t_map *map, t_piece *piece, int start_y, int start_x)
+{
+	if (!placing_tl(map, piece, start_y, start_x))
+		if (!placing_br(map, piece, start_y, start_x))
+			if (!placing_tr(map, piece, start_y, start_x))
+				if (!placing_bl(map, piece, start_y, start_x))
+					return (0);
+	return (1);
+}
+
 int						placing_dispatcher(t_map *map, t_piece *piece, t_heat *heat)
 {
-	(heat->hot = "br") ? placing_br(map, piece, heat->br_end_y, heat->br_end_x) : 0;
-	(heat->hot = "bl") ? placing_bl(map, piece, heat->bl_end_y, heat->bl_end_x) : 0;
-	(heat->hot = "tr") ? placing_tr(map, piece, heat->tr_end_y, heat->tr_end_x) : 0;
-	(heat->hot = "tl") ? placing_tl(map, piece, heat->tl_end_y, heat->tl_end_x) : 0;
+	if (ft_strcmp(heat->hot, "br") == 0 && !(bottom_right(map, piece,map->start_y, map->start_y)))
+		return (0);
+	else if (ft_strcmp(heat->hot, "bl") == 0 && !(bottom_left(map, piece, map->start_y, map->start_x)))
+		return (0);
+	else if (ft_strcmp(heat->hot, "tr") == 0 && !(top_right(map, piece, map->start_y, map->start_x)))
+		return (0);
+	else if (ft_strcmp(heat->hot, "tl") == 0 && !(top_left(map, piece, map->start_y, map->start_x)))
+		return (0);
+	return (1);
 }

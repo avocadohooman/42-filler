@@ -1,4 +1,6 @@
-seed = 1185
-players/ifarahi.filler won
+seed = 2777
+X: error on input
+players/gmolin.filler: Segfault at 0
+players/lcharvol.filler won
 Score:
-1298AGAINST469
+186AGAINST0

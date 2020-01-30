@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 15:57:47 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/30 17:49:20 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/30 23:55:14 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ void 	test_printing(t_map *map, t_piece *piece, t_heat *heat)
 	ft_printf("WARM AREA: %s\n", heat->warm);
 	ft_printf("LUKE WARM AREA: %s\n", heat->luke_warm);
 	ft_printf("COLD AREA: %s\n", heat->cold);
-	// ft_printf("TOP LEFT: %d\nTOP RIGHT: %d\nBOTTOM LEFT: %d\nBOTTOM RIGHT: %d\n", heat->tl, heat->tr, heat->bl, heat->br);
 	ft_printf("********* PIECE PLACED: *********\n");
 	i = 0;
 	while (i < map->size_y)
@@ -103,8 +102,8 @@ void 	test_printing(t_map *map, t_piece *piece, t_heat *heat)
         ft_printf("%2d %s\n", i, map->board[i]);
         i++;
     }
-	// ft_printf("********* RETURN VALUE: *********\n");
-	// ft_printf("RETURN VALUE:\nY %d\nX %d\n", piece->final_y, piece->final_x);
+	ft_printf("********* RETURN VALUE: *********\n");
+	ft_printf("RETURN VALUE:\nY %d\nX %d\n", piece->final_y, piece->final_x);
 }
 
 
@@ -131,11 +130,14 @@ int						main(int argc, char **argv)
 	// {
 		input_scan(map, piece, fd);
 		strategy_mode(map, heat);
-		placing_dispatcher(map, piece, heat);
+		// test_printing(map, piece, heat);
+		if (!(placing_dispatcher(map, piece, heat)))
+			{
+				if (!(placing_br(map, piece, 0, 0)))
+					exit(1);
+			}
 		return_coordinates(map, piece);
-		test_printing(map, piece, heat);
 		print_result(piece, map);
-		//exit(1);
 	// }
 	free (map);
 	free (piece);
