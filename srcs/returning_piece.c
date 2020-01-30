@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 13:50:45 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/29 19:35:14 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/30 15:28:19 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,8 @@ void			return_coordinates(t_map *map, t_piece *piece)
 
 void            print_result(t_piece *piece, t_map *map)
 {
-	ft_putnbr(piece->final_y);
-	ft_putchar(' ');
-	ft_putnbr(piece->final_x);
-	ft_putchar('\n');
+	
+	ft_printf("%d %d\n", piece->final_y, piece->final_x);
 	map->pos_me_x = piece->final_x;
 	map->pos_me_y = piece->final_y;
 }

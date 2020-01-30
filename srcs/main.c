@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 15:57:47 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/30 14:22:44 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/30 17:49:20 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,21 @@ void 	test_printing(t_map *map, t_piece *piece, t_heat *heat)
 	ft_printf("********* TRIMMED PIECE: *********\n");
 	ft_printf("Trim size x %d\nTrim size y %d\nPiece start x %d\nPiece start y %d\nPiece end x %d\nPiece end y %d\n", piece->trim_size_x, piece->trim_size_y, piece->start_x, piece->start_y, piece->trim_x, piece->trim_size_y);
 	i = 0;
-    while (i < piece->trim_y + 1)
+    while (piece->p_trimmed[i])
     {
         ft_printf("%d %s\n", i, piece->p_trimmed[i]);
         i++;
     }
 	ft_printf("********* HEAT MAP: *********\n");
-	ft_printf("TOP LEFT: %d\nTOP RIGHT: %d\nBOTTOM LEFT: %d\nBOTTOM RIGHT: %d\n", heat->tl, heat->tr, heat->bl, heat->br);
+    ft_printf("Top left: %11d\n", heat->array[0]);
+	ft_printf("Top right: %10d\n", heat->array[1]);
+	ft_printf("Bottom left: %8d\n", heat->array[2]);
+	ft_printf("Bottom right: %7d\n", heat->array[3]);
+	ft_printf("HOT AREA: %s\n", heat->hot);
+	ft_printf("WARM AREA: %s\n", heat->warm);
+	ft_printf("LUKE WARM AREA: %s\n", heat->luke_warm);
+	ft_printf("COLD AREA: %s\n", heat->cold);
+	// ft_printf("TOP LEFT: %d\nTOP RIGHT: %d\nBOTTOM LEFT: %d\nBOTTOM RIGHT: %d\n", heat->tl, heat->tr, heat->bl, heat->br);
 	ft_printf("********* PIECE PLACED: *********\n");
 	i = 0;
 	while (i < map->size_y)
@@ -123,7 +131,7 @@ int						main(int argc, char **argv)
 	// {
 		input_scan(map, piece, fd);
 		strategy_mode(map, heat);
-		placing_mode(map, piece, 0, 0);
+		placing_dispatcher(map, piece, heat);
 		return_coordinates(map, piece);
 		test_printing(map, piece, heat);
 		print_result(piece, map);

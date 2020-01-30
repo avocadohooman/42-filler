@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 12:25:16 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/30 13:49:58 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/30 17:21:55 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static void					initiate_struct_map(t_map *map)
 	map->pos_en_x = 0;
 	map->size_x = 0;
 	map->size_y = 0;
+	map->start_x = map->size_x / 2;
+	map->start_y = map->size_y / 2;
 	map->check_sum = 0;
 }
 
@@ -49,21 +51,29 @@ static void					initiate_struct_piece(t_piece *piece)
 	piece->final_y = 0;
 }
 
-static void					initiate_struct_heat(t_heat *heat)
+static void					initiate_struct_heat(t_heat *heat, t_map *map)
 {
-	heat->tr = 0;
-	heat->tl = 0;
-	heat->bl = 0;
-	heat->br = 0;
+	heat->array[0] = 0;
+	heat->array[1] = 0;
+	heat->array[2] = 0;
+	heat->array[3] = 0;
 	heat->hot = NULL;
 	heat->warm = NULL;
 	heat->luke_warm = NULL;
 	heat->cold = NULL;
+	heat->br_end_x = map->size_x;
+	heat->br_end_y = map->size_y;
+	heat->bl_end_x = 0;
+	heat->bl_end_y = map->size_y;
+	heat->tr_end_x = map->size_x;
+	heat->tr_end_y = 0;
+	heat->tl_end_x = 0;
+	heat->tl_end_y = 0;
 }
 
 void						initiate_structs(t_map *map, t_piece *piece, t_heat *heat)
 {
 	initiate_struct_map(map);
 	initiate_struct_piece(piece);
-	initiate_struct_heat(heat);
+	initiate_struct_heat(heat, map);
 }

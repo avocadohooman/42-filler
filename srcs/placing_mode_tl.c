@@ -1,35 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   placing_mode.c                                     :+:      :+:    :+:   */
+/*   placing_mode_tl.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 10:09:01 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/30 14:35:28 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/30 17:56:14 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-static	int				validator(t_map *map, t_piece *piece)
-{
-	int		goal;
-	int		current;
-	int		pieces;
-
-	goal = map->check_sum + (piece->check_sum - 1);
-	if (map->player == 1)
-		current = count_pieces(map->board, "oO*", 0, 0);
-	else if (map->player == 2)
-		current = count_pieces(map->board, "xX*", 0, 0);
-	pieces = count_pieces(map->board, "*", 0, 0);
-	if (goal == current && pieces == piece->check_sum)
-		return (1);
-	return (0);
-}
-
-static 	int				placing(t_map *map, t_piece *piece, int my, int mx)
+static 	int				placing_tl(t_map *map, t_piece *piece, int my, int mx)
 {
 	int		x;
 	int		y;
@@ -54,23 +37,5 @@ static 	int				placing(t_map *map, t_piece *piece, int my, int mx)
 	}
 	if (validator(map, piece) == 0)
 		return (0);
-	return (1);
-}
-
-int						placing_mode(t_map *map, t_piece *piece, int y, int x)
-{
-	map->board_backup = ft_2dstrdup(map->board);
-	while (placing(map, piece, y, x) == 0)
-	{
-		map->board = ft_2dstrdup(map->board_backup);
-		if (map->board[y][x] != '\0')
-			x++;
-		else
-		{
-			x = 0;
-			y++;
-		}
-	}
-	map->board_backup = NULL;
 	return (1);
 }

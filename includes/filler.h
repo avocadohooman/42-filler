@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 14:42:21 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/30 13:50:17 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/30 17:49:04 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ typedef	struct	s_map
 	int		pos_me_y;
 	int		pos_en_x;
 	int		pos_en_y;
+	int		start_x;
+	int		start_y;
+	int		end_y;
+	int		end_x;
 	int		size_x;
 	int		size_y;
 	int		check_sum;
@@ -48,14 +52,19 @@ typedef	struct	s_map
 
 typedef	struct	s_heat
 {
-	int		tr;
-	int		tl;
-	int		bl;
-	int		br;
+	int		array[4];
 	char	*hot;
 	char	*warm;
 	char	*luke_warm;
 	char	*cold;
+	int		br_end_x;
+	int		br_end_y;
+	int		bl_end_x;
+	int		bl_end_y;
+	int		tr_end_x;
+	int		tr_end_y;
+	int		tl_end_x;
+	int		tl_end_y;
 }				t_heat;
 
 
@@ -110,10 +119,11 @@ void                piece_mode(t_piece *piece, char *line, int fd);
 void				strategy_mode(t_map *map, t_heat *heat);
 
 /*
-** ------ PLACING.C ------
+** ------ PLACING_MODE_TOP.C ------
 */
 
-int					placing_mode(t_map *map, t_piece *piece, int y, int x);
+int					placing_dispatcher(t_map *map, t_piece *piece, t_heat *heat);
+
 
 /*
 ** ------ RETURNING_PIECES.C ------
@@ -127,6 +137,7 @@ void        		print_result(t_piece *piece, t_map *map);
 ** ------ TOOLS.C ------
 */
 
+int					validator(t_map *map, t_piece *piece);
 int					heat_counter(t_map *map, int start_y, int start_x);
 int					count_pieces(char **area, char *needle, int min_y, int min_x);
 void				tailor(t_piece *pieces);
