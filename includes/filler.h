@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 14:42:21 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/30 23:16:00 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/31 17:56:16 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ typedef	struct	s_piece
 ** ------ MAIN.C ------
 */
 
-int					main(int argc, char **argv); 
-// int					main(void);
+// int					main(int argc, char **argv); 
+int					main(void);
 
 /*
 ** ------ INITIATE_STRUCT.C ------
@@ -125,19 +125,35 @@ void				strategy_mode(t_map *map, t_heat *heat);
 int					placing_dispatcher(t_map *map, t_piece *piece, t_heat *heat);
 
 /*
-** ------ PLACING_ENGINE_TOP.C ------
+** ------ PLACING_TR.C ------
+*/
+
+int					placing_tr(t_map *map, t_piece *piece, int start_y, int start_x);
+
+/*
+** ------ PLACING_TL.C ------
 */
 
 int					placing_tl(t_map *map, t_piece *piece, int start_y, int start_x);
-int					placing_tr(t_map *map, t_piece *piece, int start_y, int start_x);
 
 
 /*
-** ------ PLACING_ENGINE_BOTTOM.C ------
+** ------ PLACING_BR.C ------
+*/
+
+int					placing_br(t_map *map, t_piece *piece, int start_y, int start_x);
+
+/*
+** ------ PLACING_BL.C ------
 */
 
 int					placing_bl(t_map *map, t_piece *piece, int start_y, int start_x);
-int					placing_br(t_map *map, t_piece *piece, int start_y, int start_x);
+
+/*
+** ------ PLACING_ALL.C ------
+*/
+
+int					placing_all(t_map *map, t_piece *piece, int start_y, int start_x);
 
 /*
 ** ------ RETURNING_PIECES.C ------

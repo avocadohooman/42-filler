@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:41:48 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/30 15:23:22 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/31 17:55:43 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ static  void        fetch_piece(t_piece *piece, char  *line, int fd)
 {
     int     k;
 
+	piece->piece = NULL;
     k = 0;
     piece->piece = (char**)malloc(sizeof(char*) * piece->size_y + 1);
     while (k < piece->size_y)

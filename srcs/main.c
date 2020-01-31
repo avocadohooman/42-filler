@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 15:57:47 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/30 23:55:14 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/31 17:56:07 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,17 +107,17 @@ void 	test_printing(t_map *map, t_piece *piece, t_heat *heat)
 }
 
 
-int						main(int argc, char **argv)
-// int							main(void)
+// int						main(int argc, char **argv)
+int							main(void)
 {
 	t_map	*map;
 	t_piece	*piece;
 	t_heat	*heat;
 	int		fd; // only for testing purposes
 
-	argc += argc; // only for testing purposes 
-	fd = open(argv[1], O_RDONLY); // only for testing purposes
-	// fd = 0;
+	// argc += argc; // only for testing purposes 
+	// fd = open(argv[1], O_RDONLY); // only for testing purposes
+	fd = 0;
 	if (!(map = malloc(sizeof(t_map))))
 		return (0);
 	if (!(heat = malloc(sizeof(t_heat))))
@@ -126,19 +126,19 @@ int						main(int argc, char **argv)
 		return (0);
 	initiate_structs(map, piece, heat);
 	fetch_player(map, fd);
-	// while (1)
-	// {
+	while (1)
+	{
 		input_scan(map, piece, fd);
 		strategy_mode(map, heat);
-		// test_printing(map, piece, heat);
 		if (!(placing_dispatcher(map, piece, heat)))
 			{
-				if (!(placing_br(map, piece, 0, 0)))
+				if (!(placing_all(map, piece, 0, 0)))
 					exit(1);
 			}
+		// test_printing(map, piece, heat);
 		return_coordinates(map, piece);
 		print_result(piece, map);
-	// }
+	}	
 	free (map);
 	free (piece);
 	return (0);

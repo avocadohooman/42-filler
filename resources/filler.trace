@@ -1,6 +1,6 @@
-seed = 2777
-X: error on input
-players/gmolin.filler: Segfault at 0
-players/lcharvol.filler won
+seed = 3429
+O: error on input
+players/gmolin.filler: Segfault at 2
+players/abanlin.filler won
 Score:
-186AGAINST0
+2AGAINST145

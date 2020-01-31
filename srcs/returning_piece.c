@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 13:50:45 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/30 15:28:19 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/01/31 18:45:41 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void			return_coordinates(t_map *map, t_piece *piece)
 		}
 		y++;
 	}
+	free(map->board);
 	piece->final_x -= piece->distance_x;
 	piece->final_y -= piece->distance_y;
 }
