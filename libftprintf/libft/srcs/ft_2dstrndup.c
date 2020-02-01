@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 15:03:42 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/27 14:21:19 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/01 17:15:42 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,18 @@
 
 char			**ft_2dstrdup(char **str)
 {
-	int		i;
-	int		j;
 	int		k;
 	char	**new;
 
-	i = 0;
 	k = 0;
-	while (str[k])
+	while (str[k] != NULL)
 		k++;
 	if (!(new = (char**)malloc(sizeof(char*) * k + 1)))
 		return (NULL);
 	k = 0;
-	while(str[k])
+	while(str[k] != NULL)
 	{
-		j = 0;
-		i = 0;
-		new[k] = (char*)malloc(sizeof(char) * ft_strlen(str[k]) + 1);
-		while (str[k][i])
-			new[k][j++] = str[k][i++];
-		new[k][j] = '\0';
+		new[k] = ft_strdup(str[k]); 
 		k++;
 	}
 	new[k] = NULL;

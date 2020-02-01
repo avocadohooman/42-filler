@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 10:09:01 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/31 18:02:41 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/01 18:00:39 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,14 @@ int						placing_all(t_map *map, t_piece *piece, int start_y, int start_x)
 			start_x = tmp;
 			start_y++;
 		}
-		if (start_y > map->size_y)
+		if (start_y + 1 > map->size_y)
 		{
 			free(map->board_backup);
 			return (0);
 		}	
 	}
+		// ft_printf("Found Place\n");
 	free(map->board_backup);
+	free(piece->p_trimmed);
 	return (1);
 }

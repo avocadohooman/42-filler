@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 13:50:13 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/31 17:41:39 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/01 17:46:52 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,22 @@ static  void        fetch_map_size(t_map *map, char *line)
 	map->start_y = map->size_y / 2;
 }
 
-static  void        fetch_map(t_map *map, char  *line, int fd)
+static  void        fetch_map(t_map *map, int fd)
 {
-   int     k;
+    int     k;
+    char    *line;
 
-    k = -1;
+    k = 0;
+    if (map->board != NULL)
+        free(map->board);
     ft_get_next_line(fd, &line);
     ft_strdel(&line);
-    map->board = (char**)malloc(sizeof(char*) * (map->size_y) + 1);
-    while (++k <= map->size_y - 1)
+    map->board = (char**)malloc(sizeof(char*) * map->size_y + 1);
+    while (k < map->size_y && ft_get_next_line(fd, &line) == 1)
     {
-        ft_get_next_line(fd, &line);
-        map->board[k] = ft_strdup(&line[4]);
+        map->board[k] = ft_strdup((const char*)&line[4]);
         ft_strdel(&line);
+        k++;
     }
 	map->board[k] = NULL;
 	map->check_sum = count_pieces(map->board, map->token_me, 0, 0);
@@ -74,6 +77,16 @@ static  void        fetch_pos(t_map *map)
 void                map_mode(t_map *map, char *line, int fd)
 {
     fetch_map_size(map, line);
-    fetch_map(map, line, fd);
-    fetch_pos(map);
+    // ft_strdel(&line);
+    fetch_map(map, fd);
+    //fetch_pos(map);
+    // int i;
+
+	// i = 0;
+	// ft_printf("********* CURRENT BOARD: *********\n");
+    // while (i < map->size_y)
+    // {
+    //     ft_printf("%2d %s\n", i, map->board[i]);
+    //     i++;
+    // }
 }

@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 15:57:47 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/31 17:56:07 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/01 17:50:43 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,17 @@ static	int					input_scan(t_map *map, t_piece *piece, int fd)
 {
 	char *line;
 
-	piece->piece = NULL;
 	while (ft_get_next_line(fd, &line) > 0)
 	{
 		if (ft_strncmp(line, "Plateau", 6) == 0)
 		{
+			// ft_printf("Inside Plateau if\n");
 			map_mode(map, line, fd);
 			ft_strdel(&line);
 		}
 		else if (ft_strncmp("Piece", line, 4) == 0)
 		{
+			// ft_printf("Inside Piece if\n");
 		 	piece_mode(piece, line, fd);
 		 	return (1);
 		}
@@ -118,11 +119,11 @@ int							main(void)
 	// argc += argc; // only for testing purposes 
 	// fd = open(argv[1], O_RDONLY); // only for testing purposes
 	fd = 0;
-	if (!(map = malloc(sizeof(t_map))))
+	if (!(map = (t_map*)malloc(sizeof(t_map))))
 		return (0);
-	if (!(heat = malloc(sizeof(t_heat))))
+	if (!(heat = (t_heat*)malloc(sizeof(t_heat))))
 		return (0);
-	if (!(piece = malloc(sizeof(t_piece))))
+	if (!(piece = (t_piece*)malloc(sizeof(t_piece))))
 		return (0);
 	initiate_structs(map, piece, heat);
 	fetch_player(map, fd);

@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 09:25:45 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/31 17:49:27 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/01 17:49:32 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,13 @@ void				tailor(t_piece *piece)
 	y = -1;
 	piece->start_x = piece->size_x;
 	piece->start_y = piece->size_y;
+	// int i = 0;
+	// ft_printf("Trim size x %d\nTrim size y %d\nPiece start x %d\nPiece start y %d\nPiece end x %d\nPiece end y %d\n", piece->trim_size_x, piece->trim_size_y, piece->start_x, piece->start_y, piece->trim_x, piece->trim_y);
+    // while (piece->piece[i])
+    // {
+    //     ft_printf("%d %s\n", i, piece->piece[i]);
+    //     i++;
+    // }
 	while (++y < piece->size_y)
 	{
 		x = -1;
@@ -103,6 +110,12 @@ void				tailor(t_piece *piece)
 					piece->trim_y = y;
 			}
 	}
-	piece->trim_size_x = (piece->trim_x - piece->start_x) + 1;
-	piece->trim_size_y = (piece->trim_y - piece->start_y) + 1;
+	// if (piece->start_x != 0 && piece->start_y != 0)
+	// {
+		piece->trim_size_x = (piece->trim_x - piece->start_x) + 1;
+		piece->trim_size_y = (piece->trim_y - piece->start_y) + 1;
+		(piece->trim_size_x > piece->size_x) ? piece->trim_size_x -= 1 : 0;
+		(piece->trim_size_y > piece->size_y) ? piece->trim_size_y -= 1 : 0;
+	// }
+	// ft_printf("Trim size x %d\nTrim size y %d\nPiece start x %d\nPiece start y %d\nPiece end x %d\nPiece end y %d\n", piece->trim_size_x, piece->trim_size_y, piece->start_x, piece->start_y, piece->trim_x, piece->trim_y);
 }

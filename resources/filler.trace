@@ -1,6 +1,5 @@
-seed = 3429
+seed = 3154
 O: error on input
-players/gmolin.filler: Segfault at 2
-players/abanlin.filler won
+players/gmolin.filler won
 Score:
-2AGAINST145
+115AGAINST62

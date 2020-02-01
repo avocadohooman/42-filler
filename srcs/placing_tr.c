@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 10:09:01 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/31 18:02:42 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/01 18:03:00 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ static 	int				placing_engine_tr(t_map *map, t_piece *piece, int start_y, int st
 
 	y = 0;
 	pos_x = start_x;
-	while (start_y > 0 && piece->p_trimmed[y])
+	while (start_y >= 0 && map->board[start_y] && piece->p_trimmed[y])
 	{
 		x = 0;
-		while (start_x < map->size_x && piece->p_trimmed[y][x])
+		while (start_x < map->size_x && map->board[start_y][start_x] && piece->p_trimmed[y][x])
 		{	
 			if (!(ft_strchr(map->token_en, map->board[start_y][start_x])) && map->board[start_y][start_x] &&
 				piece->p_trimmed[y][x] != '.')
-				map->board[start_y][start_x] = piece->p_trimmed[y][x];
+				map->board[start_y][start_x] = piece->p_trimmed[y][x++];
 			x++;
 			start_x++;
 		}
@@ -61,7 +61,7 @@ int						placing_tr(t_map *map, t_piece *piece, int start_y, int start_x)
 		map->board = ft_2dstrdup(map->board_backup);
 		if (start_x < map->size_x)
 			start_x++;
-		if (start_x + 1 > map->size_x)
+		if (start_x >= map->size_x)
 		{
 			start_x = tmp;
 			start_y--;
@@ -72,6 +72,9 @@ int						placing_tr(t_map *map, t_piece *piece, int start_y, int start_x)
 			return (0);
 		}	
 	}
+		// ft_printf("Found Place\n");
+
 	free(map->board_backup);
+	free(piece->p_trimmed);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 11:35:16 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/31 17:05:14 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/01 18:01:10 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,8 @@ static void		heat_map(t_map *map, t_heat *heat)
 void			strategy_mode(t_map *map, t_heat *heat)
 {
 	heat_map(map, heat);
+	// ft_printf("HOT AREA: %s\n", heat->hot);
+	// ft_printf("WARM AREA: %s\n", heat->warm);
+	// ft_printf("LUKE WARM AREA: %s\n", heat->luke_warm);
+	// ft_printf("COLD AREA: %s\n", heat->cold);
 }
