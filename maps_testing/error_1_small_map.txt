@@ -1,5 +1,4 @@
-$$$ exec p1 : [players/gmolin.filler]
-$$$ exec p2 : [players/test.filler]
+$$$ exec p2 : [players/gmolin.filler]
 Plateau 15 17:
     01234567890123456
 000 .................

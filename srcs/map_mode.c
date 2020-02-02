@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 13:50:13 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/02 11:21:26 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/02 12:46:50 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,35 +44,35 @@ static  void        fetch_map(t_map *map, int fd)
 	map->check_sum = count_pieces(map->board, map->token_me, 0, 0);
 }
 
-static  void        fetch_pos(t_map *map)
-{
-    int      x;
-    int      y;
-    int      token;
+// static  void        fetch_pos(t_map *map)
+// {
+//     int      x;
+//     int      y;
+//     int      token;
 
-    y = 0;
-    token = 0;
-    while (y < map->size_y && map->board[y])
-    {
-        x = 0;
-        while (x < map->size_x && map->board[y][x])
-        {
-            if (ft_strchr(map->token_me, map->board[y][x]))
-            {
-                map->pos_me_x = x;
-                map->pos_me_y = y;
-            }
-            else if (ft_strchr(map->token_en, map->board[y][x]) && token == 0)
-            {
-                map->pos_en_x = x;
-                map->pos_en_y = y;
-                token = 1;
-            }
-            x++;
-        }
-        y++;
-    }
-}
+//     y = 0;
+//     token = 0;
+//     while (y < map->size_y && map->board[y])
+//     {
+//         x = 0;
+//         while (x < map->size_x && map->board[y][x])
+//         {
+//             if (ft_strchr(map->token_me, map->board[y][x]))
+//             {
+//                 map->pos_me_x = x;
+//                 map->pos_me_y = y;
+//             }
+//             else if (ft_strchr(map->token_en, map->board[y][x]) && token == 0)
+//             {
+//                 map->pos_en_x = x;
+//                 map->pos_en_y = y;
+//                 token = 1;
+//             }
+//             x++;
+//         }
+//         y++;
+//     }
+// }
 
 void                map_mode(t_map *map, char *line, int fd)
 {

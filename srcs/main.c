@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 15:57:47 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/02 11:21:31 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/02 12:54:15 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,35 @@ static	void				fetch_player(t_map *map, int fd)
 	char	*line;
 
 	ft_get_next_line(fd, &line);
-	if (line[10] != '1' || !line)
+	if (line[9] != 'p' || !line)
 		ft_printf("error: bad player info\n");
-	if (ft_strstr(line, "gmolin.filler"))
+	if (ft_strncmp(line, "$$$", 2) == 0 && map->player == 0)
 	{
-		map->player = 1;
-		map->token_me = "oO";
-		map->token_en = "xX";
+		if (ft_strstr(line, "p2"))
+		{
+			map->player = 2;
+			map->token_me = "Xx";
+			map->token_en = "Oo";
+		}
+		if (ft_strstr(line, "p1"))
+		{
+			map->player = 1;
+			map->token_me = "Oo";
+			map->token_en = "Xx";
+		}
 	}
-	else
-	{
-		map->player = 2;
-		map->token_me = "xX";
-		map->token_en = "oO";
-	}
+	// if (ft_strstr(line, "p1"))
+	// {
+	// 	map->player = 1;
+	// 	map->token_me = "Oo";
+	// 	map->token_en = "Xx";
+	// }
+	// else
+	// {
+	// 	map->player = 2;
+	// 	map->token_me = "Xx";
+	// 	map->token_en = "Oo";
+	// }
 	ft_strdel(&line);
 }
 
