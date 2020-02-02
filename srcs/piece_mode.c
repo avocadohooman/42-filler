@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:41:48 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/01 18:01:16 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/02 11:21:40 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,10 +106,6 @@ void                piece_mode(t_piece *piece, char *line, int fd)
     fetch_piece(piece, fd);
 	tailor(piece);
 	trim_piece(piece);
-	piece->trim_x = 0;
-	piece->trim_y = 0;
-	piece->trim_size_x = 0;
-	piece->trim_size_y = 0;
 	// ft_printf("********* TRIMMED PIECE: *********\n");
 	// int i = 0;
     // while (piece->p_trimmed[i])

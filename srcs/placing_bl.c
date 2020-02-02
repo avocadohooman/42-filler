@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 10:09:01 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/01 18:04:35 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/02 11:21:04 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,16 @@ static 	int				placing_engine_bl(t_map *map, t_piece *piece, int start_y, int st
 
 	y = 0;
 	pos_x = start_x;
-	while (start_y < map->size_y && piece->p_trimmed[y])
+	while (start_y < map->size_y && y < piece->trim_size_y)
 	{
-		x = 0;
-		while (start_x >= 0 && map->board[start_y][start_x] && piece->p_trimmed[y][x])
+		x = piece->trim_size_x - 1;
+		// ft_printf("BL X: %d\n", x);
+		while (start_x >= 0 && x >= 0)
 		{	
 			if (!(ft_strchr(map->token_en, map->board[start_y][start_x])) && map->board[start_y][start_x] &&
-				piece->p_trimmed[y][x] != '.' && piece->p_trimmed[y][x])
-				map->board[start_y][start_x] = piece->p_trimmed[y][x++];
-			x++;
+				piece->p_trimmed[y][x] != '.' && x >= 0)
+				map->board[start_y][start_x] = piece->p_trimmed[y][x];
+			x--;
 			start_x--;
 		}
 		start_x = pos_x + 0;

@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 10:09:01 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/01 18:02:53 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/02 12:07:02 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,21 @@ static 	int				placing_engine_tl(t_map *map, t_piece *piece, int start_y, int st
 	int		y;
 	int		pos_x;
 
-	y = 0;
+	y = piece->trim_size_y - 1;
+	// ft_printf("TL Y: %d\n", y);
 	pos_x = start_x;
-	while (start_y >= 0 && map->board[start_y] && piece->p_trimmed[y])
+	while (start_y >= 0 && y < piece->trim_size_y)
 	{
-		x = 0;
-		while (start_x >= 0 && map->board[start_y][start_x] && piece->p_trimmed[y][x])
+		x = piece->trim_size_x - 1;
+		// ft_printf("TL X: %d\n", x);
+		// ft_printf("%s\n%c\n", piece->p_trimmed[y], piece->p_trimmed[y][x]);
+		while (start_x >= 0 && x >= 0)
 		{	
+			// ft_printf("TL X: %d\n", x);
 			if (!(ft_strchr(map->token_en, map->board[start_y][start_x])) && map->board[start_y][start_x] &&
 				piece->p_trimmed[y][x] != '.')
-				map->board[start_y][start_x] = piece->p_trimmed[y][x++];
-			x++;
+				map->board[start_y][start_x] = piece->p_trimmed[y][x];
+			x--;
 			start_x--;
 		}
 		start_x = pos_x + 0;
@@ -38,7 +42,7 @@ static 	int				placing_engine_tl(t_map *map, t_piece *piece, int start_y, int st
 	// int	i = 0;
 	// while (i < map->size_y)
     // {
-        // ft_printf("%2d %s\n", i, map->board[i]);
+    //     ft_printf("%2d %s\n", i, map->board[i]);
     //     i++;
     // }
 	if (validator(map, piece) == 0)

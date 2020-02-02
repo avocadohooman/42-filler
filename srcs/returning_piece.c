@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 13:50:45 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/01 18:01:47 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/02 11:22:05 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,10 @@ void			return_coordinates(t_map *map, t_piece *piece)
 	free(map->board);
 	map->board = NULL;
 	piece->p_trimmed = NULL;
+	piece->trim_x = 0;
+	piece->trim_y = 0;
+	piece->trim_size_x = 0;
+	piece->trim_size_y = 0;
 	// ft_printf("Final x: %d\n Final y: %d\ndistance x: %d\n distance y: %d\n", piece->final_x, piece->final_y, piece->distance_x, piece->distance_y);
 	piece->final_x -= piece->distance_x;
 	piece->final_y -= piece->distance_y;
