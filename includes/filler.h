@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 14:42:21 by gmolin            #+#    #+#             */
-/*   Updated: 2020/01/31 17:56:16 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/03 18:02:49 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ typedef	struct	s_map
 	int		size_x;
 	int		size_y;
 	int		check_sum;
+	int		token_pos_me;
+	int		token_pos_en;
 }				t_map;
 
 typedef	struct	s_heat
@@ -128,26 +130,30 @@ int					placing_dispatcher(t_map *map, t_piece *piece, t_heat *heat);
 ** ------ PLACING_TR.C ------
 */
 
-int					placing_tr(t_map *map, t_piece *piece, int start_y, int start_x);
+// int					placing_tr(t_map *map, t_piece *piece, int start_y, int start_x);
+int					placing_tr(t_map *map, t_piece *piece);
 
 /*
 ** ------ PLACING_TL.C ------
 */
 
-int					placing_tl(t_map *map, t_piece *piece, int start_y, int start_x);
+// int					placing_tl(t_map *map, t_piece *piece, int start_y, int start_x);
+int					placing_tl(t_map *map, t_piece *piece);
 
 
 /*
 ** ------ PLACING_BR.C ------
 */
 
-int					placing_br(t_map *map, t_piece *piece, int start_y, int start_x);
+// int					placing_br(t_map *map, t_piece *piece, int start_y, int start_x);
+int					placing_br(t_map *map, t_piece *piece);
 
 /*
 ** ------ PLACING_BL.C ------
 */
 
-int					placing_bl(t_map *map, t_piece *piece, int start_y, int start_x);
+// int					placing_bl(t_map *map, t_piece *piece, int start_y, int start_x);
+int					placing_bl(t_map *map, t_piece *piece);
 
 /*
 ** ------ PLACING_ALL.C ------

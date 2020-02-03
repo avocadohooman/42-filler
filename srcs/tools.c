@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 09:25:45 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/02 12:36:22 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/03 18:38:28 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ int					heat_counter(t_map *map, int start_y, int start_x)
 	(start_x == 0) ? end_x = map->size_x / 2 : 0;
 	(start_x == map->size_x / 2) ? end_x = map->size_x : 0;
 	(start_y == map->size_y / 2) ? end_y = map->size_y : 0;
+	// (start_y == 0) ? end_y = map->start_y : 0;
+	// (start_x == 0) ? end_x = map->start_x : 0;
+	// (start_x == map->start_x) ? end_x = map->size_x : 0;
+	// (start_y == map->start_y) ? end_y = map->size_y : 0;
 	count = 0;
 	y = start_y;
 	while (y < end_y)

@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 10:09:01 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/02 12:07:02 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/03 18:41:45 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static 	int				placing_engine_tl(t_map *map, t_piece *piece, int start_y, int st
 			start_x--;
 		}
 		start_x = pos_x + 0;
-		y++;
+		y--;
 		start_y--;
 	}
 	// int	i = 0;
@@ -53,11 +53,16 @@ static 	int				placing_engine_tl(t_map *map, t_piece *piece, int start_y, int st
 	return (1);
 }
 
-int						placing_tl(t_map *map, t_piece *piece, int start_y, int start_x)
+
+int						placing_tl(t_map *map, t_piece *piece)
 {
 	map->board_backup = ft_2dstrdup(map->board);
 	int tmp;
-
+	int start_x;
+	int start_y;
+	
+	start_x = map->start_x;
+	start_y = map->start_y;
 	// ft_printf("TL\n");
 	tmp = start_x;
 	while (placing_engine_tl(map, piece, start_y, start_x) == 0)
@@ -77,8 +82,36 @@ int						placing_tl(t_map *map, t_piece *piece, int start_y, int start_x)
 		}	
 	}
 		// ft_printf("Found Place\n");
-
 	free(map->board_backup);
 	free(piece->p_trimmed);
 	return (1);
 }
+
+// int						placing_tl(t_map *map, t_piece *piece, int start_y, int start_x)
+// {
+// 	map->board_backup = ft_2dstrdup(map->board);
+// 	int tmp;
+
+	// ft_printf("TL\n");
+// 	tmp = start_x;
+// 	while (placing_engine_tl(map, piece, start_y, start_x) == 0)
+// 	{
+// 		map->board = ft_2dstrdup(map->board_backup);
+// 		if (start_x >= 0)
+// 			start_x--;
+// 		if (start_x < 0)
+// 		{
+// 			start_x = tmp;
+// 			start_y--;
+// 		}
+// 		if (start_y < 0)
+// 		{
+// 			free(map->board_backup);
+// 			return (0);
+// 		}	
+// 	}
+// 		// ft_printf("Found Place\n");
+// 	free(map->board_backup);
+// 	free(piece->p_trimmed);
+// 	return (1);
+// }

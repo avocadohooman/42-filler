@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 12:25:16 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/01 17:16:52 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/03 18:02:43 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static void					initiate_struct_map(t_map *map)
 	map->start_x = 0;
 	map->start_y = 0;
 	map->check_sum = 0;
+	map->token_pos_en = 0;
+	map->token_pos_me = 0;
 }
 
 static void					initiate_struct_piece(t_piece *piece)

@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 10:09:01 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/02 11:21:23 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/03 18:41:55 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static 	int				placing_engine_tr(t_map *map, t_piece *piece, int start_y, int st
 
 	y = piece->trim_size_y - 1;
 	// ft_printf("TR Y: %d\n", y);
+	// ft_printf("START Y: %d\nSTART X: %d\n", start_y, start_x);
 	pos_x = start_x;
 	while (start_y >= 0 && y >= 0)
 	{
@@ -50,11 +51,15 @@ static 	int				placing_engine_tr(t_map *map, t_piece *piece, int start_y, int st
 	return (1);
 }
 
-int						placing_tr(t_map *map, t_piece *piece, int start_y, int start_x)
+int						placing_tr(t_map *map, t_piece *piece)
 {
 	map->board_backup = ft_2dstrdup(map->board);
 	int tmp;
-
+	int start_x;
+	int start_y;
+	
+	start_x = map->start_x;
+	start_y = map->start_y;
 	// ft_printf("TR\n");
 	tmp = start_x;
 	while (placing_engine_tr(map, piece, start_y, start_x) == 0)
@@ -79,3 +84,34 @@ int						placing_tr(t_map *map, t_piece *piece, int start_y, int start_x)
 	free(piece->p_trimmed);
 	return (1);
 }
+
+
+// int						placing_tr(t_map *map, t_piece *piece, int start_y, int start_x)
+// {
+// 	map->board_backup = ft_2dstrdup(map->board);
+// 	int tmp;
+
+// 	// ft_printf("TR\n");
+// 	tmp = start_x;
+// 	while (placing_engine_tr(map, piece, start_y, start_x) == 0)
+// 	{
+// 		map->board = ft_2dstrdup(map->board_backup);
+// 		if (start_x < map->size_x)
+// 			start_x++;
+// 		if (start_x >= map->size_x)
+// 		{
+// 			start_x = tmp;
+// 			start_y--;
+// 		}
+// 		if (start_y < 0)
+// 		{
+// 			free(map->board_backup);
+// 			return (0);
+// 		}	
+// 	}
+// 		// ft_printf("Found Place\n");
+
+// 	free(map->board_backup);
+// 	free(piece->p_trimmed);
+// 	return (1);
+// }
