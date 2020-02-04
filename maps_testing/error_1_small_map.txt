@@ -1,5 +1,4 @@
 $$$ exec p1 : [players/gmolin.filler]
-$$$ exec p2 : [players/abanlin.filler]
 Plateau 15 17:
     01234567890123456
 000 .................
@@ -19,4 +18,4 @@ Plateau 15 17:
 014 .................
 Piece 2 2:
 **
-** d
+**
