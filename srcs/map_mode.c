@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 13:50:13 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/04 13:17:57 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/04 14:46:25 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,7 +188,7 @@ void                map_mode(t_map *map, char *line, int fd)
 			map->start_y = map->pos_en_y + 30;
 			map->start_x = 0;
 		}
-		else if (map->size_y >= 24)
+		else if (map->size_y > 15 && map->size_y <= 24)
 			{
 				map->start_y = map->pos_en_y + 13;
 				map->start_x = 1;

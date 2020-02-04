@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 09:25:45 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/04 13:16:12 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/04 14:47:42 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,20 @@ int					heat_counter(t_map *map, int start_y, int start_x)
 	int end_y;
 	int end_x;
 
-	(start_y == 0) ? end_y = map->size_y / 2 : 0;
-	(start_x == 0) ? end_x = map->size_x / 2 : 0;
-	(start_x == map->size_x / 2) ? end_x = map->size_x : 0;
-	(start_y == map->size_y / 2) ? end_y = map->size_y : 0;
-	// (start_y == 0) ? end_y = map->start_y : 0;
-	// (start_x == 0) ? end_x = map->start_x : 0;
-	// (start_x == map->start_x) ? end_x = map->size_x : 0;
-	// (start_y == map->start_y) ? end_y = map->size_y : 0;
+	if (map->size_y <= 24)
+	{
+		(start_y == 0) ? end_y = map->size_y / 2 : 0;
+		(start_x == 0) ? end_x = map->size_x / 2 : 0;
+		(start_x == map->size_x / 2) ? end_x = map->size_x : 0;
+		(start_y == map->size_y / 2) ? end_y = map->size_y : 0;
+	}
+	else
+	{
+		(start_y == 0) ? end_y = map->start_y : 0;
+		(start_x == 0) ? end_x = map->start_x : 0;
+		(start_x == map->start_x) ? end_x = map->size_x : 0;
+		(start_y == map->start_y) ? end_y = map->size_y : 0;
+	}
 	count = 0;
 	y = start_y;
 	while (y < end_y)
