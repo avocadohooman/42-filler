@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 10:09:01 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/03 18:41:45 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/04 09:20:35 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ static 	int				placing_engine_tl(t_map *map, t_piece *piece, int start_y, int st
 
 	y = piece->trim_size_y - 1;
 	// ft_printf("TL Y: %d\n", y);
+	// 	ft_printf("TL start x: %d\nTL start y: %d\n", start_x, start_y);
 	pos_x = start_x;
-	while (start_y >= 0 && y < piece->trim_size_y)
+	while (start_y >= 0 && y >= 0)
 	{
 		x = piece->trim_size_x - 1;
 		// ft_printf("TL X: %d\n", x);

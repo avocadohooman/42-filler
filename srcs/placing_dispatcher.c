@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 10:09:01 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/03 18:38:45 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/04 09:12:03 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int static				cold(t_map *map, t_piece *piece, t_heat *heat)
 
 int						placing_dispatcher(t_map *map, t_piece *piece, t_heat *heat)
 {
+	// ft_printf("placing dispatcher\n");
 	if (!hot(map, piece, heat))
 		if (!warm(map, piece, heat))
 			if (!luke_warm(map, piece, heat))

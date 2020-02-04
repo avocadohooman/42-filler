@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 10:09:01 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/03 18:41:52 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/04 09:20:22 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static 	int				placing_engine_bl(t_map *map, t_piece *piece, int start_y, int st
 	// int	i = 0;
 	// while (i < map->size_y)
     // {
-        // ft_printf("%2d %s\n", i, map->board[i]);
+    	// ft_printf("%2d %s\n", i, map->board[i]);
     //     i++;
     // }
 	if (validator(map, piece) == 0)

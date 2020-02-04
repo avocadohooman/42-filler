@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 10:09:01 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/03 17:56:34 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/04 09:11:34 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static 	int				placing_engine_br(t_map *map, t_piece *piece, int start_y, int st
 
 	y = 0;
 	pos_x = start_x;
+	// ft_printf("BR start x: %d\nBR start y: %d\n", start_x, start_y);
 	while (start_y < map->size_y && map->board[start_y] && piece->p_trimmed[y])
 	{
 		x = 0;
