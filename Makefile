@@ -6,7 +6,7 @@
 #    By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/19 13:45:47 by gmolin            #+#    #+#              #
-#    Updated: 2020/02/05 13:37:41 by gmolin           ###   ########.fr        #
+#    Updated: 2020/02/05 16:25:08 by gmolin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ SRCS = 	srcs/initiate_struct.c \
 		srcs/main.c \
 		srcs/tools2.c
 
-OBJS = $(subst .c,.o,$(subst srcs/,,$(SRCS1)))
+OBJS = $(subst .c,.o,$(subst srcs/,,$(SRCS)))
 
 OBJS2 = initiate_struct.o \
 		piece_mode.o \

@@ -1,1 +1,1 @@
-./filler_vm_old -p1 players/gmolin.filler -p2 players/abanlin.filler -f maps/map00
+./filler_vm_old -p1 players/gmolin.filler -p2 players/superjeannot.filler -f maps/map02

@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 14:42:21 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/05 13:33:24 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/05 15:47:52 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <unistd.h>
 # include "../libftprintf/libft/includes/libft.h"
 # include "../libftprintf/ft_printf/includes/ft_printf.h"
+# include "mlx/mlx.h"
 # include <fcntl.h>
 # define BUFF_SIZE 1
 

@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 11:35:16 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/05 13:34:26 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/05 18:17:59 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,20 @@ static char		*heat_level(t_heat *heat)
 
 static void		heat_map(t_map *map, t_heat *heat)
 {
-	if (map->size_y >= 25)
-	{
-		heat->array[0] = heat_counter_big(map, 0, 0);
-		heat->array[1] = heat_counter_big(map, 0, map->start_x);
-		heat->array[2] = heat_counter_big(map, map->start_y, 0);
-		heat->array[3] = heat_counter_big(map, map->start_x, map->start_y);
-	}
-	else 
-	{
+	// if (map->size_y >= 25)
+	// {
+		// heat->array[0] = heat_counter_big(map, 0, 0);
+		// heat->array[1] = heat_counter_big(map, 0, map->start_x);
+		// heat->array[2] = heat_counter_big(map, map->start_y, 0);
+		// heat->array[3] = heat_counter_big(map, map->start_x, map->start_y);
+	// }
+	// else 
+	// {
 		heat->array[0] = heat_counter_small(map, 0, 0);
 		heat->array[1] = heat_counter_small(map, 0, map->size_x / 2);
 		heat->array[2] = heat_counter_small(map, map->size_y / 2, 0);
 		heat->array[3] = heat_counter_small(map, map->size_y / 2, map->size_x / 2);
-	}
+	// }
 	heat->hot = heat_level(heat);
 	heat->warm = heat_level(heat);
 	heat->luke_warm = heat_level(heat);
