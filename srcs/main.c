@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 15:57:47 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/04 17:35:24 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/05 11:18:35 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,8 +142,8 @@ int							main(void)
 		return (0);
 	initiate_structs(map, piece, heat);
 	fetch_player(map, fd);
-	// while (1)
-	// {
+	while (1)
+	{
 		input_scan(map, piece, fd);
 		strategy_mode(map, heat);
 		if (!(placing_dispatcher(map, piece, heat)))
@@ -151,10 +151,10 @@ int							main(void)
 					exit(1);
 		return_coordinates(map, piece);
 		print_result(piece, map);
-	// }	
-	free (map);
-	free (piece);
-	free (heat);
-	while(1);
+	}	
+	// free(map);
+	// free(piece);
+	// free(heat);
+	// while(1);
 	return (0);
 }

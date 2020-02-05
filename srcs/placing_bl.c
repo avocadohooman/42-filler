@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 10:09:01 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/04 17:41:06 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/05 11:20:40 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,20 @@ static 	int				placing_engine_bl(t_map *map, t_piece *piece, int start_y, int st
 	int		x;
 	int		y;
 	int		pos_x;
+	char	**area;
 
 	y = 0;
 	pos_x = start_x;
-	map->board_backup = ft_2dstrdup(map->board);
+	area = ft_2dstrdup(map->board);
 	while (start_y < map->size_y && y < piece->trim_size_y)
 	{
 		x = piece->trim_size_x - 1;
 		// ft_printf("BL X: %d\n", x);
 		while (start_x >= 0 && x >= 0)
 		{	
-			if (!(ft_strchr(map->token_en, map->board_backup[start_y][start_x])) && map->board_backup[start_y][start_x] &&
+			if (!(ft_strchr(map->token_en, area[start_y][start_x])) && area[start_y][start_x] &&
 				piece->p_trimmed[y][x] != '.' && x >= 0)
-				map->board_backup[start_y][start_x] = piece->p_trimmed[y][x];
+				area[start_y][start_x] = piece->p_trimmed[y][x];
 			x--;
 			start_x--;
 		}
@@ -43,11 +44,14 @@ static 	int				placing_engine_bl(t_map *map, t_piece *piece, int start_y, int st
     // 	ft_printf("%2d %s\n", i, map->board_backup[i]);
     //     i++;
     // }
-	if (validator(map, piece) == 0)
+	if (validator(map, piece, area) == 0)
 	{
-		// free(map->board_backup);	
+		cleaner(area);	
 		return (0);
 	}
+	cleaner(map->board);
+	map->board = ft_2dstrdup(area);
+	cleaner(area);
 	return (1);
 }
 
@@ -74,7 +78,7 @@ int						placing_bl(t_map *map, t_piece *piece)
 		if (start_y >= map->size_y)
 			return (0);
 	}
-	ft_printf("Found Place\n");
+	// ft_printf("Found Place\n");
 	// free(map->board_backup);
 	// free(piece->p_trimmed);
 	return (1);

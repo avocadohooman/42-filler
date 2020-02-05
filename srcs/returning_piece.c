@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 13:50:45 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/04 17:33:19 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/05 11:24:20 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,8 @@ void			return_coordinates(t_map *map, t_piece *piece)
     //     ft_printf("%2d %s\n", i, map->board[i]);
     //     i++;
     // }
-	free(map->board);
-	map->board = NULL;
-	piece->p_trimmed = NULL;
+	cleaner(piece->p_trimmed);
+	cleaner(map->board);
 	piece->trim_x = 0;
 	piece->trim_y = 0;
 	piece->trim_size_x = 0;

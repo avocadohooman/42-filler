@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 10:09:01 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/04 17:40:57 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/05 11:20:51 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,21 @@ static 	int				placing_engine_tr(t_map *map, t_piece *piece, int start_y, int st
 	int		x;
 	int		y;
 	int		pos_x;
+	char	**area;
 
 	y = piece->trim_size_y - 1;
 	// ft_printf("TR Y: %d\n", y);
 	// ft_printf("START Y: %d\nSTART X: %d\n", start_y, start_x);
 	pos_x = start_x;
-	map->board_backup = ft_2dstrdup(map->board);
+	area = ft_2dstrdup(map->board);
 	while (start_y >= 0 && y >= 0)
 	{
 		x = 0;
 		while (start_x < map->size_x && map->board[start_y][start_x] && piece->p_trimmed[y][x])
 		{	
-			if (!(ft_strchr(map->token_en, map->board_backup[start_y][start_x])) && map->board_backup[start_y][start_x] &&
+			if (!(ft_strchr(map->token_en, area[start_y][start_x])) && area[start_y][start_x] &&
 				piece->p_trimmed[y][x] != '.')
-				map->board_backup[start_y][start_x] = piece->p_trimmed[y][x];
+				area[start_y][start_x] = piece->p_trimmed[y][x];
 			x++;
 			start_x++;
 		}
@@ -41,14 +42,17 @@ static 	int				placing_engine_tr(t_map *map, t_piece *piece, int start_y, int st
 	// int	i = 0;
 	// while (i < map->size_y)
     // {
-    //     ft_printf("%2d %s\n", i, map->board_backup[i]);
+    //     ft_printf("%2d %s\n", i, area[i]);
     //     i++;
     // }
-	if (validator(map, piece) == 0)
+	if (validator(map, piece, area) == 0)
 	{
-		free(map->board_backup);
+		cleaner(area);
 		return (0);
 	}
+	cleaner(map->board);
+	map->board = ft_2dstrdup(area);
+	cleaner(area);
 	return (1);
 }
 

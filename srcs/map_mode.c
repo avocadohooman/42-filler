@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 13:50:13 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/04 17:32:41 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/05 11:19:29 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ static  void        fetch_map(t_map *map, int fd)
     char    *line;
 
     k = 0;
-    if (map->board != NULL)
-        free(map->board);
+    // if (map->board != NULL)
+    //     cleaner(map->board);
     ft_get_next_line(fd, &line);
     ft_strdel(&line);
     map->board = (char**)malloc(sizeof(char*) * map->size_y + 1);

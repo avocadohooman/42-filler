@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 14:42:21 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/04 17:07:45 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/05 11:24:25 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,9 +173,10 @@ void        		print_result(t_piece *piece, t_map *map);
 ** ------ TOOLS.C ------
 */
 
-int					validator(t_map *map, t_piece *piece);
+int					validator(t_map *map, t_piece *piece, char **area);
 int					heat_counter(t_map *map, int start_y, int start_x);
 int					count_pieces(char **area, char *needle, int min_y, int min_x);
 void				tailor(t_piece *pieces);
+void				cleaner(char **str);
 
 #endif

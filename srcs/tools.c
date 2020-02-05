@@ -6,25 +6,24 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 09:25:45 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/04 17:41:54 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/05 11:00:27 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-int					validator(t_map *map, t_piece *piece)
+int					validator(t_map *map, t_piece *piece, char **area)
 {
 	int		goal;
 	int		current;
 	int		pieces;
 
-
 	goal = map->check_sum + (piece->check_sum - 1);
 	if (map->player == 1)
-		current = count_pieces(map->board, "Oo*", 0, 0);
+		current = count_pieces(area, "Oo*", 0, 0);
 	else if (map->player == 2)
-		current = count_pieces(map->board, "Xx*", 0, 0);
-	pieces = count_pieces(map->board, "*", 0, 0);
+		current = count_pieces(area, "Xx*", 0, 0);
+	pieces = count_pieces(area, "*", 0, 0);
 	if (goal == current && pieces == piece->check_sum)
 		return (1);
 	return (0);
@@ -129,4 +128,18 @@ void				tailor(t_piece *piece)
 		(piece->trim_size_y > piece->size_y) ? piece->trim_size_y -= 1 : 0;
 	// }
 	// ft_printf("Trim size x %d\nTrim size y %d\nPiece start x %d\nPiece start y %d\nPiece end x %d\nPiece end y %d\n", piece->trim_size_x, piece->trim_size_y, piece->start_x, piece->start_y, piece->trim_x, piece->trim_y);
+}
+
+void				cleaner(char **str)
+{
+	int		i;
+
+	i = 0;
+	while (str[i] != NULL)
+	{
+		ft_strdel(&str[i]);
+		i++;
+	}
+	free(str);
+	str = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:41:48 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/03 17:57:43 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/05 11:20:01 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,14 @@ static  void        fetch_piece(t_piece *piece, int fd)
 	char	*line;
 
 	// ft_printf("Inside fetching piece \n");
-	if (piece->piece != NULL)
-		free(piece->piece);
+	// if (piece->piece != NULL)
+	// 	cleaner(piece->piece);
     k = 0;
     piece->piece = (char**)malloc(sizeof(char*) * piece->size_y + 1);
     while (k < piece->size_y)
     {
         ft_get_next_line(fd, &line);
         piece->piece[k] = ft_strdup((const char*)line);
-		piece->piece[k] = (char *)malloc(sizeof(char *) * (piece->size_x + 1));
-		piece->piece[k] = ft_strcpy(piece->piece[k], (const char *)line);
 		k++;
         ft_strdel(&line);
     }
@@ -80,8 +78,8 @@ static void			trim_piece(t_piece *piece)
 	int tmp;
 
 	y = 0;
-	if (piece->p_trimmed != NULL)
-		free(piece->p_trimmed);
+	// if (piece->p_trimmed != NULL)
+	// 	cleaner(piece->p_trimmed);
 	// ft_printf("Inside trim piece \n");
 	tmp = piece->start_x;
 	piece->p_trimmed = (char**)malloc(sizeof(char*) * piece->trim_size_y + 1);
@@ -98,6 +96,7 @@ static void			trim_piece(t_piece *piece)
 	}
 	// ft_printf("Piece has been trimmed \n");
 	piece->p_trimmed[y] = NULL;
+	cleaner(piece->piece);
 }
 
 void                piece_mode(t_piece *piece, char *line, int fd)
