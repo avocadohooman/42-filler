@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 14:42:21 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/05 11:24:25 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/05 13:33:24 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 typedef	struct	s_map
 {
 	char	**board;
-	char	**board_backup;
+	char	**area;
 	char	*p_name;
 	char	*token_me;
 	char	*token_en;
@@ -93,7 +93,6 @@ typedef	struct	s_piece
 ** ------ MAIN.C ------
 */
 
-// int					main(int argc, char **argv); 
 int					main(void);
 
 /*
@@ -130,14 +129,12 @@ int					placing_dispatcher(t_map *map, t_piece *piece, t_heat *heat);
 ** ------ PLACING_TR.C ------
 */
 
-// int					placing_tr(t_map *map, t_piece *piece, int start_y, int start_x);
 int					placing_tr(t_map *map, t_piece *piece);
 
 /*
 ** ------ PLACING_TL.C ------
 */
 
-// int					placing_tl(t_map *map, t_piece *piece, int start_y, int start_x);
 int					placing_tl(t_map *map, t_piece *piece);
 
 
@@ -145,7 +142,6 @@ int					placing_tl(t_map *map, t_piece *piece);
 ** ------ PLACING_BR.C ------
 */
 
-// int					placing_br(t_map *map, t_piece *piece, int start_y, int start_x);
 int					placing_br(t_map *map, t_piece *piece);
 
 /*
@@ -173,10 +169,17 @@ void        		print_result(t_piece *piece, t_map *map);
 ** ------ TOOLS.C ------
 */
 
-int					validator(t_map *map, t_piece *piece, char **area);
-int					heat_counter(t_map *map, int start_y, int start_x);
+int					validator(t_map *map, t_piece *piece);
 int					count_pieces(char **area, char *needle, int min_y, int min_x);
 void				tailor(t_piece *pieces);
 void				cleaner(char **str);
+
+/*
+** ------ TOOLS2.C ------
+*/
+
+int					heat_counter_big(t_map *map, int start_y, int start_x);
+int					heat_counter_small(t_map *map, int start_y, int start_x);
+
 
 #endif

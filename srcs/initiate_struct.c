@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 12:25:16 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/03 18:02:43 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/05 13:12:37 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void					initiate_struct_map(t_map *map)
 {
 	map->board = NULL;
-	map->board_backup = NULL;
+	map->area = NULL;
 	map->p_name = NULL;
 	map->token_me = NULL;
 	map->token_en = NULL;

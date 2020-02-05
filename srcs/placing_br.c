@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 10:09:01 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/05 11:20:31 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/05 13:41:41 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,18 @@ static 	int				placing_engine_br(t_map *map, t_piece *piece, int start_y, int st
 	int		x;
 	int		y;
 	int		pos_x;
-	char	**area;
 
 	y = 0;
 	pos_x = start_x;
-	// ft_printf("BR start x: %d\nBR start y: %d\n", start_x, start_y);
-	area = ft_2dstrdup(map->board);
-	while (start_y < map->size_y && area[start_y] && piece->p_trimmed[y])
+	map->area = ft_2dstrdup(map->board);
+	while (start_y < map->size_y && map->area[start_y] && piece->p_trimmed[y])
 	{
 		x = 0;
-		while (start_x < map->size_x && area[start_y][start_x] && piece->p_trimmed[y][x])
+		while (start_x < map->size_x && map->area[start_y][start_x] && piece->p_trimmed[y][x])
 		{	
-			if (!(ft_strchr(map->token_en, area[start_y][start_x])) && area[start_y][start_x] &&
+			if (!(ft_strchr(map->token_en, map->area[start_y][start_x])) && map->area[start_y][start_x] &&
 				piece->p_trimmed[y][x] != '.')
-				area[start_y][start_x] = piece->p_trimmed[y][x];
+				map->area[start_y][start_x] = piece->p_trimmed[y][x];
 			x++;
 			start_x++;
 		}
@@ -38,20 +36,8 @@ static 	int				placing_engine_br(t_map *map, t_piece *piece, int start_y, int st
 		y++;
 		start_y++;
 	}
-	// int	i = 0;
-	// while (i < map->size_y)
-    // {
-    //     ft_printf("%2d %s\n", i, map->board[i]);
-    //     i++;
-    // }
-	if (validator(map, piece, area) == 0)
-	{
-		cleaner(area);
+	if (validator(map, piece) == 0)
 		return (0);
-	}
-	cleaner(map->board);
-	map->board = ft_2dstrdup(area);
-	cleaner(area);
 	return (1);
 }
 
@@ -64,10 +50,10 @@ int						placing_br(t_map *map, t_piece *piece)
 	
 	start_x = map->start_x;
 	start_y = map->start_y;
-	// ft_printf("BR\n");
 	tmp = start_x;
 	while (placing_engine_br(map, piece, start_y, start_x) == 0)
 	{
+		cleaner(map->area);
 		if (start_x < map->size_x)
 			start_x++;
 		if (start_x >= map->size_x)
@@ -78,35 +64,8 @@ int						placing_br(t_map *map, t_piece *piece)
 		if (start_y >= map->size_y)
 			return (0);
 	}
-	// ft_printf("Found Place\n");
+	cleaner(map->board);
+	map->board = ft_2dstrdup(map->area);
+	cleaner(map->area);
 	return (1);
 }
-
-// int						placing_br(t_map *map, t_piece *piece, int start_y, int start_x)
-// {
-// 	map->board_backup = ft_2dstrdup(map->board);
-// 	int tmp;
-
-// 	// ft_printf("BR\n");
-// 	tmp = start_x;
-// 	while (placing_engine_br(map, piece, start_y, start_x) == 0)
-// 	{
-// 		map->board = ft_2dstrdup(map->board_backup);
-// 		if (start_x < map->size_x)
-// 			start_x++;
-// 		if (start_x >= map->size_x)
-// 		{
-// 			start_x = tmp;
-// 			start_y++;
-// 		}
-// 		if (start_y >= map->size_y)
-// 		{
-// 			free(map->board_backup);
-// 			return (0);
-// 		}	
-// 	}
-// 	// ft_printf("Found Place\n");
-// 	free(map->board_backup);
-// 	free(piece->p_trimmed);
-// 	return (1);
-// }

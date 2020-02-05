@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:41:48 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/05 11:20:01 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/05 12:21:11 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static  void        fetch_piece_size(t_piece *piece, char *line)
 {
     int     i;
 
-	// ft_printf("Inside piece size \n");
     piece->size_y = ft_atoi(&line[6]);
     i = 6 + ft_len(piece->size_y);
     piece->size_x = ft_atoi(&line[i]);
@@ -53,9 +52,6 @@ static  void        fetch_piece(t_piece *piece, int fd)
     int     k;
 	char	*line;
 
-	// ft_printf("Inside fetching piece \n");
-	// if (piece->piece != NULL)
-	// 	cleaner(piece->piece);
     k = 0;
     piece->piece = (char**)malloc(sizeof(char*) * piece->size_y + 1);
     while (k < piece->size_y)
@@ -67,7 +63,6 @@ static  void        fetch_piece(t_piece *piece, int fd)
     }
     piece->piece[k] = NULL;
 	piece->check_sum = count_pieces(piece->piece, "*", 0, 0);
-	// ft_printf("Piece has been fetched \n");
 	fetch_pos(piece);
 }
 
@@ -78,9 +73,6 @@ static void			trim_piece(t_piece *piece)
 	int tmp;
 
 	y = 0;
-	// if (piece->p_trimmed != NULL)
-	// 	cleaner(piece->p_trimmed);
-	// ft_printf("Inside trim piece \n");
 	tmp = piece->start_x;
 	piece->p_trimmed = (char**)malloc(sizeof(char*) * piece->trim_size_y + 1);
 	while (y < piece->trim_size_y)
@@ -94,7 +86,6 @@ static void			trim_piece(t_piece *piece)
 		piece->start_y++;
 		y++;
 	}
-	// ft_printf("Piece has been trimmed \n");
 	piece->p_trimmed[y] = NULL;
 	cleaner(piece->piece);
 }
@@ -105,11 +96,4 @@ void                piece_mode(t_piece *piece, char *line, int fd)
     fetch_piece(piece, fd);
 	tailor(piece);
 	trim_piece(piece);
-	// ft_printf("********* TRIMMED PIECE: *********\n");
-	// int i = 0;
-    // while (piece->p_trimmed[i])
-    // {
-    //     ft_printf("%d %s\n", i, piece->p_trimmed[i]);
-    //     i++;
-    // }
 }

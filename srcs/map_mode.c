@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 13:50:13 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/05 11:19:29 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/05 13:21:55 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ static  void        fetch_map_size(t_map *map, char *line)
     map->size_y = ft_atoi(&line[8]);
     i = 8 + ft_len(map->size_y);
     map->size_x = ft_atoi(&line[i]);
-    // map->start_x = map->size_x / 2;
-	// map->start_y = map->size_y / 2;
 }
 
 static  void        fetch_map(t_map *map, int fd)
@@ -29,8 +27,6 @@ static  void        fetch_map(t_map *map, int fd)
     char    *line;
 
     k = 0;
-    // if (map->board != NULL)
-    //     cleaner(map->board);
     ft_get_next_line(fd, &line);
     ft_strdel(&line);
     map->board = (char**)malloc(sizeof(char*) * map->size_y + 1);
@@ -48,43 +44,34 @@ static  void        fetch_pos(t_map *map)
 {
     int      		x;
     int      		y;
-	int				token_me;
-	int				token_en;
 
     y = 0;
-	token_me = 0;
-	token_en = 0;
     while (y < map->size_y && map->board[y])
     {
         x = 0;
         while (x < map->size_x && map->board[y][x])
         {
             if (ft_strchr(map->token_me, map->board[y][x]) && map->token_pos_me == 0)
-			// if (ft_strchr(map->token_me, map->board[y][x]))
             {
                 map->pos_me_x = x;
                 map->pos_me_y = y;
 				map->token_pos_me = 1;
 			}
             if (ft_strchr(map->token_en, map->board[y][x]) && map->token_pos_en == 0)
-			// if (ft_strchr(map->token_en, map->board[y][x]) && token_en == 0)
             {
                 map->pos_en_x = x;
                 map->pos_en_y = y;
                 map->token_pos_en = 1;
-				// token_en = 1;
             }
             x++;
         }
         y++;
     }
-	// ft_printf("token; %d\n", token_en);
 }
 
 void                map_mode(t_map *map, char *line, int fd)
 {
     fetch_map_size(map, line);
-    // ft_strdel(&line);
     fetch_map(map, fd);
     fetch_pos(map);
 	
