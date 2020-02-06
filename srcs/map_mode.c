@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 13:50:13 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/05 18:15:48 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/06 17:49:48 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,85 +74,6 @@ void                map_mode(t_map *map, char *line, int fd)
     fetch_map_size(map, line);
     fetch_map(map, fd);
     fetch_pos(map);
-	
-	/*
-	** ------ Test setup #4 ------
-	*/
-
-	// map->start_x = map->pos_me_x;
-	// map->start_y = map->pos_me_y;	
-
-	/*
-	** ------ Test setup #3 ------
-	*/
-
-	// map->start_x = map->pos_en_x;
-	// map->start_y = map->pos_en_y;
-
-	/*
-	** ------ Test setup #2.7 ------
-	*/
-
-	// if (map->pos_me_y > map->size_y / 2 && map->pos_me_y < map->pos_en_y)
-	// {
-	// 	map->start_y = map->pos_en_y - 5;
-	// 	map->start_x = map->size_x / 2;
-	// }
-	// else if (map->pos_me_y < map->size_y / 2 && map->pos_me_y < map->pos_en_y)
-	// {
-	// 	map->start_y = map->size_y / 2;
-	// 	map->start_x = map->size_x / 2;
-	// }
-	// else if (map->pos_me_y > map->start_y / 2 && map->pos_me_y > map->pos_en_y)
-	// {
-	// 	map->start_y = map->pos_en_y;
-	// 	map->start_x = map->pos_en_x;
-	// }
-
-	/*
-	** ------ Test setup #2.6 ------
-	*/
-
-	// if (map->pos_me_y > map->size_y / 2 && map->pos_me_y < map->pos_en_y)
-	// {
-	// 	map->start_y = map->pos_en_y - 7;
-	// 	map->start_x = map->size_x / 2;
-	// }
-	// else if (map->pos_me_y < map->size_y / 2 && map->pos_me_y < map->pos_en_y)
-	// {
-	// 	map->start_y = map->size_y / 2;
-	// 	map->start_x = map->size_x / 2;
-	// }
-	// else if (map->pos_me_y > map->start_y / 2 && map->pos_me_y > map->pos_en_y)
-	// {
-	// 	map->start_y = map->pos_en_y;
-	// 	map->start_x = map->pos_en_x;
-	// }
-
-	/*
-	** ------ Test setup #2.5 ------
-	*/
-
-	// if (map->pos_me_y > map->size_y / 2 && map->pos_me_y < map->pos_en_y)
-	// {
-	// 	map->start_y = map->size_y / 2;
-	// 	map->start_x = map->pos_me_x;
-	// }
-	// else if (map->pos_me_y < map->size_y / 2 && map->pos_me_y < map->pos_en_y)
-	// {
-	// 	map->start_y = map->size_y / 2;
-	// 	map->start_x = map->size_x / 2;
-	// }
-	// else if (map->pos_me_y > map->start_y / 2 && map->pos_me_y > map->pos_en_y)
-	// {
-	// 	map->start_y = map->pos_en_y;
-	// 	map->start_x = map->pos_en_x;
-	// }
-
-	/*
-	** ------ Test setup #2.4 ------
-	*/
-
 	if (map->pos_me_y > map->size_y / 2 && map->pos_me_y < map->pos_en_y)
 	{
 		map->start_y = map->pos_en_y - 6;
@@ -163,19 +84,12 @@ void                map_mode(t_map *map, char *line, int fd)
 		map->start_y = map->size_y / 2;
 		map->start_x = map->size_x / 2;
 	}
-
-	/*
-	** ------ Test setup map 02 #2.0 ------
-	*/
-
 	else if (map->pos_me_y > map->start_y / 2 && map->pos_me_y > map->pos_en_y)
 	{
 		if (map->size_y > 24)
 		{
 			map->start_y = map->pos_en_y + 30;
 			map->start_x = 10;
-			// map->start_x = map->pos_me_x;
-			// map->start_y = map->pos_me_y;
 		}
 		else if (map->size_y > 15 && map->size_y <= 24)
 		{
@@ -188,130 +102,4 @@ void                map_mode(t_map *map, char *line, int fd)
 			map->start_x =  map->pos_en_x + 6;
 		}
 	}
-	/*
-	** ------ Test setup map 02 #1.0 ------
-	*/
-
-	// else if (map->pos_me_y > map->start_y / 2 && map->pos_me_y > map->pos_en_y)
-	// {
-	// 	map->start_y = map->size_y / 2;
-	// 	map->start_x = map->size_x / 2;
-	// }
-
-	/*
-	** ------ Test setup #2.3 ------
-	*/
-
-	// if (map->pos_me_y > map->size_y / 2 && map->pos_me_y < map->pos_en_y)
-	// {
-	// 	map->start_y = map->pos_en_y;
-	// 	map->start_x = map->size_x / 2;
-	// }
-	// else if (map->pos_me_y < map->size_y / 2 && map->pos_me_y < map->pos_en_y)
-	// {
-	// 	map->start_y = map->size_y / 2;
-	// 	map->start_x = map->size_x / 2;
-	// }
-	// else if (map->pos_me_y > map->start_y / 2 && map->pos_me_y > map->pos_en_y)
-	// {
-	// 	map->start_y = map->pos_en_y;
-	// 	map->start_x = map->pos_en_x;
-	// }
-
-	/*
-	** ------ Test setup #2.2 ------
-	*/
-
-	// if (map->pos_me_y > map->size_y / 2 && map->pos_me_y < map->pos_en_y)
-	// {
-	// 	map->start_y = map->size_y / 2;
-	// 	map->start_x = map->pos_en_x;
-	// }
-	// else if (map->pos_me_y < map->size_y / 2 && map->pos_me_y < map->pos_en_y)
-	// {
-	// 	map->start_y = map->size_y / 2;
-	// 	map->start_x = map->size_x / 2;
-	// }
-	// else if (map->pos_me_y > map->start_y / 2 && map->pos_me_y > map->pos_en_y)
-	// {
-	// 	map->start_y = map->pos_en_y;
-	// 	map->start_x = map->pos_en_x;
-	// }
-
-	/*
-	** ------ Test setup #2.1 ------
-	*/
-
-	// if (map->pos_me_y > map->size_y / 2 && map->pos_me_y < map->pos_en_y)
-	// {
-	// 	map->start_y = map->pos_en_y - 3;
-	// 	map->start_x = map->pos_en_x;
-	// }
-	// else if (map->pos_me_y < map->size_y / 2 && map->pos_me_y < map->pos_en_y)
-	// {
-	// 	map->start_y = map->size_y / 2;
-	// 	map->start_x = map->size_x / 2;
-	// }
-	// else if (map->pos_me_y > map->start_y / 2 && map->pos_me_y > map->pos_en_y)
-	// {
-	// 	map->start_y = map->pos_en_y;
-	// 	map->start_x = map->pos_en_x;
-	// }
-
-	/*
-	** ------ Test setup #2 ------
-	*/
-
-	// ft_printf("\npos y: %d\npos x: %d\nmap size y/2: %d\nmap size x/2: %d\n", map->pos_en_y, map->pos_en_x, map->size_y / 2, map->size_x / 2);
-	// if (map->pos_me_y > map->size_y / 2 && map->pos_me_y < map->pos_en_y)
-	// {
-	// 	map->start_y = map->pos_me_y;
-	// 	map->start_x = map->pos_me_x;
-	// }
-	// else if (map->pos_me_y < map->size_y / 2 && map->pos_me_y < map->pos_en_y)
-	// {
-	// 	map->start_y = map->size_y / 2;
-	// 	map->start_x = map->size_x / 2;
-	// }
-	// else if (map->pos_me_y > map->start_y / 2 && map->pos_me_y > map->pos_en_y)
-	// {
-	// 	map->start_y = map->pos_en_y;
-	// 	map->start_x = map->pos_en_x;
-	// }
-	/*
-	** ------ Test setup #1 ------
-	*/
-
-	// if (map->pos_en_y < map->pos_me_y)
-	// {
-	// 	map->start_y = map->pos_en_y;
-	// 	map->start_x = map->pos_en_x;
-	// }
-	// if (map->pos_me_y < map->size_y / 2)
-	// {
-	// 	map->start_y = map->size_y / 2;
-	// 	map->start_x = map->size_y / 2;
-	// }
-	// if (map->pos_en_y > map->size_y / 2 && map->pos_en_y > map->pos_me_y) 
-	// {
-	// 	map->start_y = map->size_y / 2;
-	// 	map->start_x = map->size_y / 2;
-	// }
-
-		/*
-	** ------ Test setup #0 ------
-	*/
-
-	// map->start_x = map->size_x / 2;
-	// map->start_y = map->size_y / 2;
-
-    // int i;
-
-	// i = 0;
-	// ft_printf("********* CURRENT BOARD: *********\n");
-    // while (i < map->size_y)
-    // {
-    //     ft_printf("%2d %s\n", i, map->board[i]);
-    //     i++;
-    // }
 }

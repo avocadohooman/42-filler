@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 15:57:47 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/05 15:37:46 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/06 17:07:17 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int							main(void)
 	{
 		input_scan(map, piece, fd);
 		strategy_mode(map, heat);
-		if (!(placing_dispatcher(map, piece, heat)))
+			if (!(placing_dispatcher(map, piece, heat)))
 				if (!(placing_all(map, piece, 0, 0)))
 					exit(1);
 		return_coordinates(map, piece);

@@ -6,13 +6,13 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 10:09:01 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/05 16:51:56 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/06 16:59:40 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-int static				hot(t_map *map, t_piece *piece, t_heat *heat)
+static int 				hot(t_map *map, t_piece *piece, t_heat *heat)
 {
 	if (ft_strcmp(heat->hot, "br") == 0)
 		if (!(placing_br(map, piece)))
@@ -29,7 +29,7 @@ int static				hot(t_map *map, t_piece *piece, t_heat *heat)
 	return (1);
 }
 
-int static				warm(t_map *map, t_piece *piece, t_heat *heat)
+static int				warm(t_map *map, t_piece *piece, t_heat *heat)
 {
 	if (ft_strcmp(heat->warm, "br") == 0)
 		if (!(placing_br(map, piece)))
@@ -46,7 +46,7 @@ int static				warm(t_map *map, t_piece *piece, t_heat *heat)
 	return (1);
 }
 
-int static				luke_warm(t_map *map, t_piece *piece, t_heat *heat)
+static int				luke_warm(t_map *map, t_piece *piece, t_heat *heat)
 {
 	if (ft_strcmp(heat->luke_warm, "br") == 0)
 		if (!(placing_br(map, piece)))
@@ -63,7 +63,7 @@ int static				luke_warm(t_map *map, t_piece *piece, t_heat *heat)
 	return (1);
 }
 
-int static				cold(t_map *map, t_piece *piece, t_heat *heat)
+static int				cold(t_map *map, t_piece *piece, t_heat *heat)
 {
 	if (ft_strcmp(heat->cold, "br") == 0)
 		if (!(placing_br(map, piece)))
