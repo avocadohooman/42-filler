@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 15:42:27 by lcharvol          #+#    #+#             */
-/*   Updated: 2020/02/05 17:46:04 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/06 14:33:18 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,16 @@ void		print_final(t_env *p)
 	char	*str;
 
 	str = ft_itoa(p->scorep1);
-	mlx_string_put(p->mlx, p->win, (WIDTH / 2) + 120, (HEIGHT / 2) - 10,
-		0x0e74c3c, str);
+	mlx_string_put(p->mlx, p->win, (WIDTH / 2) + 390, (HEIGHT / 2) + 145,
+		0xFFFFFFF, str);
 	str = ft_itoa(p->scorep2);
-	mlx_string_put(p->mlx, p->win, (WIDTH / 2) + 120, (HEIGHT / 2) + 110,
-		0x03498db, str);
+	mlx_string_put(p->mlx, p->win, (WIDTH / 2) + 180, (HEIGHT / 2) + 145,
+		0xFFFFFFF, str);
 	str = p->p2;
-	mlx_string_put(p->mlx, p->win, (WIDTH / 2) + 120, (HEIGHT / 2) - 100,
-		0x0e74c3c, str);
+	mlx_string_put(p->mlx, p->win, (WIDTH / 2) + 330, (HEIGHT / 2) + 175,
+		0xb176ed, str);
 	str = p->p1;
-	mlx_string_put(p->mlx, p->win, (WIDTH / 2) + 120, (HEIGHT / 2) + 210,
-		0x03498db, str);
+	mlx_string_put(p->mlx, p->win, (WIDTH / 2) + 120, (HEIGHT / 2) + 175,
+		0x67E8BA, str);
 }
 

@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 14:24:05 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/05 17:56:21 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/06 14:56:14 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static int	loop_key_hook(t_env *p)
 		input_scan(p);
 		draw_mode(p);
 		mlx_put_image_to_window(p->mlx, p->win, p->img, 0, 0);
-		mlx_put_image_to_window(p->mlx, p->win, p->img2, 0, 0);
 		mlx_destroy_image(p->mlx, p->img);
 		p->img = mlx_new_image(p->mlx, WIDTH, HEIGHT);
 		print_final(p);
@@ -84,7 +83,6 @@ int			main(void)
 	p->mlx = mlx_init();
 	p->win = mlx_new_window(p->mlx, WIDTH, HEIGHT, WINDOW_NAME);
 	p->img = mlx_new_image(p->mlx, WIDTH, HEIGHT);
-	draw_title(p);
 	mlx_hook(p->win, 2, 2, key_hook, p);
 	mlx_mouse_hook(p->win, mouse_hook, p);
 	loop_key_hook(p);

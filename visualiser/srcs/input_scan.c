@@ -6,15 +6,15 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 14:24:13 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/05 17:15:10 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/06 15:38:13 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/visualiser.h"
 
-void		fetch_player_name(char *line, t_env *p)
+void			fetch_player_name(char *line, t_env *p)
 {
-	int i;
+	int		i;
 
 	i = 22;
 	if (line[9] == 'p' && line[10] == '1')
@@ -42,19 +42,19 @@ void		fetch_player_name(char *line, t_env *p)
 
 void			fetch_map(t_env *p)
 {
-    int     k;
-    char    *line;
+	int		k;
+    char	*line;
 
-    k = 0;
-    ft_get_next_line(0, &line);
-    ft_strdel(&line);
-    p->map = (char**)malloc(sizeof(char*) * p->map_size_y + 1);
-    while (k < p->map_size_y && ft_get_next_line(0, &line) == 1)
-    {
-        p->map[k] = ft_strdup((const char*)&line[4]);
-        ft_strdel(&line);
-        k++;
-    }
+	k = 0;
+	ft_get_next_line(0, &line);
+	ft_strdel(&line);
+	p->map = (char**)malloc(sizeof(char*) * p->map_size_y + 1);
+	while (k < p->map_size_y && ft_get_next_line(0, &line) == 1)
+	{
+    	p->map[k] = ft_strdup((const char*)&line[4]);
+    	ft_strdel(&line);
+    	k++;
+	}
 	p->map[k] = NULL;
 }
 
