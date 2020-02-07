@@ -6,17 +6,18 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 10:09:01 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/05 17:00:59 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/07 15:40:17 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-static 	int				placing_engine_all(t_map *map, t_piece *piece, int start_y, int start_x)
+static int	placing_engine_all(t_map *map, t_piece *piece, int start_y, int start_x)
 {
 	int		x;
 	int		y;
 	int		pos_x;
+
 	y = 0;
 	pos_x = start_x;
 	map->area = ft_2dstrdup(map->board);
@@ -24,9 +25,9 @@ static 	int				placing_engine_all(t_map *map, t_piece *piece, int start_y, int s
 	{
 		x = 0;
 		while (start_x < map->size_x && piece->p_trimmed[y][x])
-		{	
-			if (!(ft_strchr(map->token_en, map->area[start_y][start_x])) && map->area[start_y][start_x] &&
-				piece->p_trimmed[y][x] != '.')
+		{
+			if (!(ft_strchr(map->token_en, map->area[start_y][start_x]))
+				&& map->area[start_y][start_x] && piece->p_trimmed[y][x] != '.')
 				map->area[start_y][start_x] = piece->p_trimmed[y][x];
 			x++;
 			start_x++;
@@ -40,7 +41,7 @@ static 	int				placing_engine_all(t_map *map, t_piece *piece, int start_y, int s
 	return (1);
 }
 
-int						placing_all(t_map *map, t_piece *piece, int start_y, int start_x)
+int			placing_all(t_map *map, t_piece *piece, int start_y, int start_x)
 {
 	int tmp;
 

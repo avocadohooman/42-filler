@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 09:25:45 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/06 17:04:37 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/07 14:42:47 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int					heat_counter_big(t_map *map, int start_y, int start_x)
 	while (y < end_y)
 	{
 		x = start_x;
-		while (x < end_x) 
+		while (x < end_x)
 		{
 			if (ft_strchr(map->token_en, map->board[y][x]))
 				count++;
@@ -57,7 +57,7 @@ int					heat_counter_small(t_map *map, int start_y, int start_x)
 	while (y < end_y)
 	{
 		x = start_x;
-		while (x < end_x) 
+		while (x < end_x)
 		{
 			if (ft_strchr(map->token_en, map->board[y][x]))
 				count++;

@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 14:42:21 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/06 17:07:12 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/07 15:38:21 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ typedef	struct	s_map
 	int		check_sum;
 	int		token_pos_me;
 	int		token_pos_en;
+	int		local_x; //
+	int		local_y; //
+	int		flip;
 }				t_map;
 
 typedef	struct	s_heat
@@ -172,7 +175,7 @@ void        		print_result(t_piece *piece, t_map *map);
 
 int					validator(t_map *map, t_piece *piece);
 int					count_pieces(char **area, char *needle, int min_y, int min_x);
-void				tailor(t_piece *pieces);
+void				tailor(t_piece *pieces, int y, int x);
 void				cleaner(char **str);
 
 /*

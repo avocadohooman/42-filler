@@ -6,13 +6,13 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 15:57:47 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/06 17:07:17 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/07 15:37:15 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-static	void				fetch_player(t_map *map, int fd)
+static void				fetch_player(t_map *map, int fd)
 {
 	char	*line;
 
@@ -37,9 +37,9 @@ static	void				fetch_player(t_map *map, int fd)
 	ft_strdel(&line);
 }
 
-static	int					input_scan(t_map *map, t_piece *piece, int fd)
+static int				input_scan(t_map *map, t_piece *piece, int fd)
 {
-	char *line;
+	char	*line;
 
 	while (ft_get_next_line(fd, &line) > 0)
 	{
@@ -50,8 +50,8 @@ static	int					input_scan(t_map *map, t_piece *piece, int fd)
 		}
 		else if (ft_strncmp("Piece", line, 4) == 0)
 		{
-		 	piece_mode(piece, line, fd);
-		 	return (1);
+			piece_mode(piece, line, fd);
+			return (1);
 		}
 		else
 			ft_strdel(&line);
@@ -59,8 +59,7 @@ static	int					input_scan(t_map *map, t_piece *piece, int fd)
 	return (0);
 }
 
-
-int							main(void)
+int						main(void)
 {
 	t_map	*map;
 	t_piece	*piece;
@@ -80,11 +79,11 @@ int							main(void)
 	{
 		input_scan(map, piece, fd);
 		strategy_mode(map, heat);
-			if (!(placing_dispatcher(map, piece, heat)))
-				if (!(placing_all(map, piece, 0, 0)))
-					exit(1);
+		if (!(placing_dispatcher(map, piece, heat)))
+			if (!(placing_all(map, piece, 0, 0)))
+				exit(1);
 		return_coordinates(map, piece);
 		print_result(piece, map);
-	} 
+	}
 	return (0);
 }

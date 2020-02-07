@@ -6,13 +6,13 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 10:09:01 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/05 16:50:45 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/07 14:30:37 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-static 	int				placing_engine_bl(t_map *map, t_piece *piece, int start_y, int start_x)
+static int	placing_engine_bl(t_map *map, t_piece *piece, int start_y, int start_x)
 {
 	int		x;
 	int		y;
@@ -25,9 +25,9 @@ static 	int				placing_engine_bl(t_map *map, t_piece *piece, int start_y, int st
 	{
 		x = piece->trim_size_x - 1;
 		while (start_x >= 0 && x >= 0)
-		{	
-			if (!(ft_strchr(map->token_en, map->area[start_y][start_x])) && map->area[start_y][start_x] &&
-				piece->p_trimmed[y][x] != '.' && x >= 0)
+		{
+			if (!(ft_strchr(map->token_en, map->area[start_y][start_x])) &&
+			map->area[start_y][start_x] && piece->p_trimmed[y][x] != '.' && x >= 0)
 				map->area[start_y][start_x] = piece->p_trimmed[y][x];
 			x--;
 			start_x--;
@@ -41,12 +41,12 @@ static 	int				placing_engine_bl(t_map *map, t_piece *piece, int start_y, int st
 	return (1);
 }
 
-int						placing_bl(t_map *map, t_piece *piece)
+int			placing_bl(t_map *map, t_piece *piece)
 {
 	int tmp;
 	int start_x;
 	int start_y;
-	
+
 	start_x = map->start_x;
 	start_y = map->start_y;
 	tmp = start_x;
@@ -62,7 +62,7 @@ int						placing_bl(t_map *map, t_piece *piece)
 		}
 		if (start_y >= map->size_y)
 			return (0);
-	}	
+	}
 	cleaner(map->board);
 	map->board = ft_2dstrdup(map->area);
 	cleaner(map->area);

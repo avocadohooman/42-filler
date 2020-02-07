@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 11:35:16 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/06 18:08:34 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/07 15:40:48 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static char		*heat_level(t_heat *heat)
 {
-	int 	i;
+	int		i;
 	int		tmp;
-	int 	pos;
+	int		pos;
 	char	*area;
 
 	i = 1;
@@ -61,7 +61,54 @@ static void		heat_map(t_map *map, t_heat *heat)
 	heat->cold = heat_level(heat);
 }
 
+static	void	big_map(t_map *map, t_heat *heat)
+{
+	if (map->pos_me_y < map->size_y / 2 && map->pos_me_y < map->pos_en_y)
+	{
+		map->start_y = map->size_y / 2;
+		map->start_x = map->size_x / 2;
+	}
+	else if (map->pos_me_y > map->start_y / 2 && map->pos_me_y > map->pos_en_y)
+	{
+		map->start_y = map->pos_en_y + 40;
+		map->start_x = 5;
+	}
+}
+
+static	void	small_map(t_map *map, t_heat *heat)
+{
+	if (map->pos_me_y > map->size_y / 2 && map->pos_me_y < map->pos_en_y)
+	{
+		map->start_y = map->pos_en_y - 6;
+		map->start_x = map->size_x / 2;
+	}
+	else if (map->pos_me_y < map->size_y / 2 && map->pos_me_y < map->pos_en_y)
+	{
+		map->start_y = map->size_y / 2;
+		map->start_x = map->size_x / 2;
+	}
+	else if (map->pos_me_y > map->start_y / 2 && map->pos_me_y > map->pos_en_y)
+	{
+		if (map->size_y > 15 && map->size_y <= 24)
+		{
+			map->start_y = map->pos_en_y + 13;
+			map->start_x = 1;
+		}
+		else
+		{
+			map->start_y = map->pos_en_y - 4;
+			map->start_x = map->pos_en_x + 6;
+		}
+	}
+}
+
 void			strategy_mode(t_map *map, t_heat *heat)
 {
+	if (map->flip == 1)
+	{
+		map->flip = 0;
+	}
+	(map->size_y > 24) ? big_map(map, heat) : 0;
+	(map->size_y <= 24) ? small_map(map, heat) : 0;
 	heat_map(map, heat);
 }

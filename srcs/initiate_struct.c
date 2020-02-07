@@ -6,13 +6,13 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 12:25:16 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/06 17:04:03 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/07 15:38:28 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-static void					initiate_struct_map(t_map *map)
+static void			initiate_struct_map(t_map *map)
 {
 	map->board = NULL;
 	map->area = NULL;
@@ -32,9 +32,12 @@ static void					initiate_struct_map(t_map *map)
 	map->check_sum = 0;
 	map->token_pos_en = 0;
 	map->token_pos_me = 0;
+	map->local_x = 0; //
+	map->local_y = 0; //
+	map->flip = 0;
 }
 
-static void					initiate_struct_piece(t_piece *piece)
+static void			initiate_struct_piece(t_piece *piece)
 {
 	piece->piece = NULL;
 	piece->p_trimmed = NULL;
@@ -53,7 +56,7 @@ static void					initiate_struct_piece(t_piece *piece)
 	piece->final_y = 0;
 }
 
-static void					initiate_struct_heat(t_heat *heat, t_map *map)
+static void			initiate_struct_heat(t_heat *heat, t_map *map)
 {
 	heat->array[0] = 0;
 	heat->array[1] = 0;
@@ -73,7 +76,7 @@ static void					initiate_struct_heat(t_heat *heat, t_map *map)
 	heat->tl_end_y = 0;
 }
 
-void						initiate_structs(t_map *map, t_piece *piece, t_heat *heat)
+void				initiate_structs(t_map *map, t_piece *piece, t_heat *heat)
 {
 	initiate_struct_map(map);
 	initiate_struct_piece(piece);

@@ -6,13 +6,13 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 09:25:45 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/06 17:04:35 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/07 14:42:49 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-int					validator(t_map *map, t_piece *piece)
+int		validator(t_map *map, t_piece *piece)
 {
 	int		goal;
 	int		current;
@@ -29,7 +29,7 @@ int					validator(t_map *map, t_piece *piece)
 	return (0);
 }
 
-int					count_pieces(char **area, char *needle, int min_y, int min_x)
+int		count_pieces(char **area, char *needle, int min_y, int min_x)
 {
 	int	count;
 	int	y;
@@ -51,11 +51,8 @@ int					count_pieces(char **area, char *needle, int min_y, int min_x)
 	return (count);
 }
 
-void				tailor(t_piece *piece)
+void	tailor(t_piece *piece, int y, int x)
 {
-	int		y;
-	int		x;
-
 	y = -1;
 	piece->start_x = piece->size_x;
 	piece->start_y = piece->size_y;
@@ -78,9 +75,10 @@ void				tailor(t_piece *piece)
 	piece->trim_size_x = (piece->trim_x - piece->start_x) + 1;
 	piece->trim_size_y = (piece->trim_y - piece->start_y) + 1;
 	(piece->trim_size_x > piece->size_x) ? piece->trim_size_x -= 1 : 0;
-	(piece->trim_size_y > piece->size_y) ? piece->trim_size_y -= 1 : 0;}
+	(piece->trim_size_y > piece->size_y) ? piece->trim_size_y -= 1 : 0;
+}
 
-void				cleaner(char **str)
+void	cleaner(char **str)
 {
 	int		i;
 

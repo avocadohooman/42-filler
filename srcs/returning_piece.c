@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 13:50:45 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/06 17:05:33 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/07 15:38:37 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void			return_coordinates(t_map *map, t_piece *piece)
 	while (map->board[y] && token != 1)
 	{
 		x = 0;
-		while (map->board[y][x] && token != 1 )
+		while (map->board[y][x] && token != 1)
 		{
 			if (map->board[y][x] == '*' && token != 1)
 			{
@@ -36,11 +36,14 @@ void			return_coordinates(t_map *map, t_piece *piece)
 		}
 		y++;
 	}
+	map->local_x = piece->final_x;
+	map->local_y = piece->final_y;
+	map->flip = 1;
 	piece->final_x -= piece->distance_x;
 	piece->final_y -= piece->distance_y;
 }
 
-void            print_result(t_piece *piece, t_map *map)
+void			print_result(t_piece *piece, t_map *map)
 {
 	piece->trim_x = 0;
 	piece->trim_y = 0;

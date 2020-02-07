@@ -6,23 +6,23 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:41:48 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/05 16:41:26 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/07 14:37:42 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-static  void        fetch_piece_size(t_piece *piece, char *line)
+static void		fetch_piece_size(t_piece *piece, char *line)
 {
-    int     i;
+	int	i;
 
-    piece->size_y = ft_atoi(&line[6]);
-    i = 6 + ft_len(piece->size_y);
-    piece->size_x = ft_atoi(&line[i]);
+	piece->size_y = ft_atoi(&line[6]);
+	i = 6 + ft_len(piece->size_y);
+	piece->size_x = ft_atoi(&line[i]);
 	ft_strdel(&line);
 }
 
-static void			fetch_pos(t_piece *piece)
+static void		fetch_pos(t_piece *piece)
 {
 	int		x;
 	int		y;
@@ -47,21 +47,21 @@ static void			fetch_pos(t_piece *piece)
 	}
 }
 
-static  void        fetch_piece(t_piece *piece, int fd)
+static void		fetch_piece(t_piece *piece, int fd)
 {
-    int     k;
+	int		k;
 	char	*line;
 
-    k = 0;
-    piece->piece = (char**)malloc(sizeof(char*) * piece->size_y + 1);
-    while (k < piece->size_y)
-    {
-        ft_get_next_line(fd, &line);
-        piece->piece[k] = ft_strdup((const char*)line);
+	k = 0;
+	piece->piece = (char**)malloc(sizeof(char*) * piece->size_y + 1);
+	while (k < piece->size_y)
+	{
+		ft_get_next_line(fd, &line);
+		piece->piece[k] = ft_strdup((const char*)line);
 		k++;
-        ft_strdel(&line);
-    }
-    piece->piece[k] = NULL;
+		ft_strdel(&line);
+	}
+	piece->piece[k] = NULL;
 	piece->check_sum = count_pieces(piece->piece, "*", 0, 0);
 	fetch_pos(piece);
 }
@@ -90,10 +90,10 @@ static void			trim_piece(t_piece *piece)
 	cleaner(piece->piece);
 }
 
-void                piece_mode(t_piece *piece, char *line, int fd)
+void				piece_mode(t_piece *piece, char *line, int fd)
 {
-    fetch_piece_size(piece, line);
-    fetch_piece(piece, fd);
-	tailor(piece);
+	fetch_piece_size(piece, line);
+	fetch_piece(piece, fd);
+	tailor(piece, -1, -1);
 	trim_piece(piece);
 }
