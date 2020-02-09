@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 10:09:01 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/09 12:59:38 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/09 17:13:06 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,26 +82,33 @@ static int		cold(t_map *map, t_piece *p, t_heat *heat)
 
 int				placing_dispatcher(t_map *map, t_piece *p, t_heat *heat)
 {
-	if (map->hot == 1)
-	{
-		if (!hot(map, p, heat))
+	// if (map->hot == 1)
+	// {
+	// 	if (!hot(map, p, heat))
+	// 		if (!warm(map, p, heat))
+	// 			if (!luke_warm(map, p, heat))
+	// 				if (!cold(map, p, heat))
+	// 					{
+	// 						map->hot = 0;
+	// 						return (0);
+	// 					}
+	// }
+	// else
+	// {
+	// 	if (!warm(map, p, heat))
+	// 		if (!luke_warm(map, p, heat))
+	// 			if (!cold(map, p, heat))
+	// 				{
+	// 					map->hot = 1;
+	// 					return (0);
+	// 				}
+	// }
+	if (!hot(map, p, heat))
 			if (!warm(map, p, heat))
 				if (!luke_warm(map, p, heat))
 					if (!cold(map, p, heat))
 						{
-							map->hot = 0;
 							return (0);
 						}
-	}
-	else
-	{
-		if (!warm(map, p, heat))
-			if (!luke_warm(map, p, heat))
-				if (!cold(map, p, heat))
-					{
-						map->hot = 1;
-						return (0);
-					}
-	}
 	return (1);
 }
