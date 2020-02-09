@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 13:50:13 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/07 14:43:12 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/09 11:29:59 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ static void			fetch_pos(t_map *map)
 		x = 0;
 		while (x < map->size_x && map->board[y][x])
 		{
-			if (ft_strchr(map->token_me, map->board[y][x]) && map->token_pos_me == 0)
+			if (ft_strchr(map->token_me, map->board[y][x]) && !map->token_pos_me)
 			{
 				map->pos_me_x = x;
 				map->pos_me_y = y;
 				map->token_pos_me = 1;
 			}
-			if (ft_strchr(map->token_en, map->board[y][x]) && map->token_pos_en == 0)
+			if (ft_strchr(map->token_en, map->board[y][x]) && !map->token_pos_en)
 			{
 				map->pos_en_x = x;
 				map->pos_en_y = y;

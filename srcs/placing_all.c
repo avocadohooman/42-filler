@@ -6,13 +6,13 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 10:09:01 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/07 15:40:17 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/09 11:44:34 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-static int	placing_engine_all(t_map *map, t_piece *piece, int start_y, int start_x)
+static int		slap_all(t_map *map, t_piece *p, int start_y, int start_x)
 {
 	int		x;
 	int		y;
@@ -21,14 +21,14 @@ static int	placing_engine_all(t_map *map, t_piece *piece, int start_y, int start
 	y = 0;
 	pos_x = start_x;
 	map->area = ft_2dstrdup(map->board);
-	while (start_y < map->size_y && piece->p_trimmed[y])
+	while (start_y < map->size_y && p->p_trimmed[y])
 	{
 		x = 0;
-		while (start_x < map->size_x && piece->p_trimmed[y][x])
+		while (start_x < map->size_x && p->p_trimmed[y][x])
 		{
 			if (!(ft_strchr(map->token_en, map->area[start_y][start_x]))
-				&& map->area[start_y][start_x] && piece->p_trimmed[y][x] != '.')
-				map->area[start_y][start_x] = piece->p_trimmed[y][x];
+				&& p->p_trimmed[y][x] != '.')
+				map->area[start_y][start_x] = p->p_trimmed[y][x];
 			x++;
 			start_x++;
 		}
@@ -36,17 +36,17 @@ static int	placing_engine_all(t_map *map, t_piece *piece, int start_y, int start
 		y++;
 		start_y++;
 	}
-	if (validator(map, piece) == 0)
+	if (validator(map, p) == 0)
 		return (0);
 	return (1);
 }
 
-int			placing_all(t_map *map, t_piece *piece, int start_y, int start_x)
+int				placing_all(t_map *map, t_piece *p, int start_y, int start_x)
 {
 	int tmp;
 
 	tmp = start_x;
-	while (placing_engine_all(map, piece, start_y, start_x) == 0)
+	while (slap_all(map, p, start_y, start_x) == 0)
 	{
 		cleaner(map->area);
 		if (start_x < map->size_x)

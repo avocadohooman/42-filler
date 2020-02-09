@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 14:42:21 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/07 15:38:21 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/09 13:22:37 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,7 @@ typedef	struct	s_map
 	int		check_sum;
 	int		token_pos_me;
 	int		token_pos_en;
-	int		local_x; //
-	int		local_y; //
-	int		flip;
+	int		hot;
 }				t_map;
 
 typedef	struct	s_heat
@@ -63,14 +61,6 @@ typedef	struct	s_heat
 	char	*warm;
 	char	*luke_warm;
 	char	*cold;
-	int		br_end_x;
-	int		br_end_y;
-	int		bl_end_x;
-	int		bl_end_y;
-	int		tr_end_x;
-	int		tr_end_y;
-	int		tl_end_x;
-	int		tl_end_y;
 }				t_heat;
 
 
@@ -103,7 +93,7 @@ int					main(void);
 ** ------ INITIATE_STRUCT.C ------
 */
 
-void				initiate_structs(t_map *map, t_piece *piece, t_heat *heat);
+void				initiate_structs(t_map *map, t_piece *p, t_heat *heat);
 
 /*
 ** ------ MAP_MODE.C ------
@@ -115,7 +105,7 @@ void       			map_mode(t_map *map, char *line, int fd);
 ** ------ PIECE_MODE.C ------
 */
 
-void                piece_mode(t_piece *piece, char *line, int fd);
+void                piece_mode(t_piece *p, char *line, int fd);
 
 /*
 ** ------ STRATEGY_MODE.C ------
@@ -127,63 +117,54 @@ void				strategy_mode(t_map *map, t_heat *heat);
 ** ------ PLACING_DISPATCHER.C ------
 */
 
-int					placing_dispatcher(t_map *map, t_piece *piece, t_heat *heat);
+int					placing_dispatcher(t_map *map, t_piece *p, t_heat *heat);
 
 /*
 ** ------ PLACING_TR.C ------
 */
 
-int					placing_tr(t_map *map, t_piece *piece);
+int					placing_tr(t_map *map, t_piece *p);
 
 /*
 ** ------ PLACING_TL.C ------
 */
 
-int					placing_tl(t_map *map, t_piece *piece);
+int					placing_tl(t_map *map, t_piece *p);
 
 
 /*
 ** ------ PLACING_BR.C ------
 */
 
-int					placing_br(t_map *map, t_piece *piece);
+int					placing_br(t_map *map, t_piece *p);
 
 /*
 ** ------ PLACING_BL.C ------
 */
 
-// int					placing_bl(t_map *map, t_piece *piece, int start_y, int start_x);
-int					placing_bl(t_map *map, t_piece *piece);
+int					placing_bl(t_map *map, t_piece *p);
 
 /*
 ** ------ PLACING_ALL.C ------
 */
 
-int					placing_all(t_map *map, t_piece *piece, int start_y, int start_x);
+int					placing_all(t_map *map, t_piece *p, int start_y, int start_x);
 
 /*
 ** ------ RETURNING_PIECES.C ------
 */
 
-void				return_coordinates(t_map *map, t_piece *piece);
-void        		print_result(t_piece *piece, t_map *map);
+void				return_coordinates(t_map *map, t_piece *p);
+void        		print_result(t_piece *p, t_map *map);
 
 
 /*
 ** ------ TOOLS.C ------
 */
-
-int					validator(t_map *map, t_piece *piece);
+int					heat_counter(t_map *map, int start_y, int start_x);
+int					validator(t_map *map, t_piece *p);
 int					count_pieces(char **area, char *needle, int min_y, int min_x);
-void				tailor(t_piece *pieces, int y, int x);
+void				tailor(t_piece *p, int y, int x);
 void				cleaner(char **str);
-
-/*
-** ------ TOOLS2.C ------
-*/
-
-int					heat_counter_big(t_map *map, int start_y, int start_x);
-int					heat_counter_small(t_map *map, int start_y, int start_x);
-
 
 #endif

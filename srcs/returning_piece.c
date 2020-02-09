@@ -6,13 +6,13 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 13:50:45 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/07 15:38:37 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/09 13:22:27 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-void			return_coordinates(t_map *map, t_piece *piece)
+void			return_coordinates(t_map *map, t_piece *p)
 {
 	int y;
 	int x;
@@ -28,28 +28,25 @@ void			return_coordinates(t_map *map, t_piece *piece)
 		{
 			if (map->board[y][x] == '*' && token != 1)
 			{
-				piece->final_x = x;
-				piece->final_y = y;
+				p->final_x = x;
+				p->final_y = y;
 				token = 1;
 			}
 			x++;
 		}
 		y++;
 	}
-	map->local_x = piece->final_x;
-	map->local_y = piece->final_y;
-	map->flip = 1;
-	piece->final_x -= piece->distance_x;
-	piece->final_y -= piece->distance_y;
+	p->final_x -= p->distance_x;
+	p->final_y -= p->distance_y;
 }
 
-void			print_result(t_piece *piece, t_map *map)
+void			print_result(t_piece *p, t_map *map)
 {
-	piece->trim_x = 0;
-	piece->trim_y = 0;
-	piece->trim_size_x = 0;
-	piece->trim_size_y = 0;
-	cleaner(piece->p_trimmed);
+	p->trim_x = 0;
+	p->trim_y = 0;
+	p->trim_size_x = 0;
+	p->trim_size_y = 0;
+	cleaner(p->p_trimmed);
 	cleaner(map->board);
-	ft_printf("%d %d\n", piece->final_y, piece->final_x);
+	ft_printf("%d %d\n", p->final_y, p->final_x);
 }

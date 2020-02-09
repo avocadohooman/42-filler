@@ -6,23 +6,23 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:41:48 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/07 14:37:42 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/09 11:38:22 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-static void		fetch_piece_size(t_piece *piece, char *line)
+static void		fetch_piece_size(t_piece *p, char *line)
 {
 	int	i;
 
-	piece->size_y = ft_atoi(&line[6]);
-	i = 6 + ft_len(piece->size_y);
-	piece->size_x = ft_atoi(&line[i]);
+	p->size_y = ft_atoi(&line[6]);
+	i = 6 + ft_len(p->size_y);
+	p->size_x = ft_atoi(&line[i]);
 	ft_strdel(&line);
 }
 
-static void		fetch_pos(t_piece *piece)
+static void		fetch_pos(t_piece *p)
 {
 	int		x;
 	int		y;
@@ -30,16 +30,16 @@ static void		fetch_pos(t_piece *piece)
 
 	y = 0;
 	token = 0;
-	while (piece->piece[y])
+	while (p->piece[y])
 	{
 		x = 0;
-		while (piece->piece[y][x])
+		while (p->piece[y][x])
 		{
-			if (piece->piece[y][x] == '*' && token == 0)
+			if (p->piece[y][x] == '*' && token == 0)
 			{
 				token = 1;
-				piece->distance_x = x;
-				piece->distance_y = y;
+				p->distance_x = x;
+				p->distance_y = y;
 			}
 			x++;
 		}
@@ -47,53 +47,53 @@ static void		fetch_pos(t_piece *piece)
 	}
 }
 
-static void		fetch_piece(t_piece *piece, int fd)
+static void		fetch_piece(t_piece *p, int fd)
 {
 	int		k;
 	char	*line;
 
 	k = 0;
-	piece->piece = (char**)malloc(sizeof(char*) * piece->size_y + 1);
-	while (k < piece->size_y)
+	p->piece = (char**)malloc(sizeof(char*) * p->size_y + 1);
+	while (k < p->size_y)
 	{
 		ft_get_next_line(fd, &line);
-		piece->piece[k] = ft_strdup((const char*)line);
+		p->piece[k] = ft_strdup((const char*)line);
 		k++;
 		ft_strdel(&line);
 	}
-	piece->piece[k] = NULL;
-	piece->check_sum = count_pieces(piece->piece, "*", 0, 0);
-	fetch_pos(piece);
+	p->piece[k] = NULL;
+	p->check_sum = count_pieces(p->piece, "*", 0, 0);
+	fetch_pos(p);
 }
 
-static void			trim_piece(t_piece *piece)
+static void			trim_piece(t_piece *p)
 {
 	int y;
 	int x;
 	int tmp;
 
 	y = 0;
-	tmp = piece->start_x;
-	piece->p_trimmed = (char**)malloc(sizeof(char*) * piece->trim_size_y + 1);
-	while (y < piece->trim_size_y)
+	tmp = p->start_x;
+	p->p_trimmed = (char**)malloc(sizeof(char*) * p->trim_size_y + 1);
+	while (y < p->trim_size_y)
 	{
 		x = 0;
-		piece->start_x = tmp;
-		piece->p_trimmed[y] = (char*)malloc(sizeof(char) * piece->trim_size_x + 1);
-		while (x < piece->trim_size_x)
-			piece->p_trimmed[y][x++] = piece->piece[piece->start_y][piece->start_x++];
-		piece->p_trimmed[y][x] = '\0';
-		piece->start_y++;
+		p->start_x = tmp;
+		p->p_trimmed[y] = (char*)malloc(sizeof(char) * p->trim_size_x + 1);
+		while (x < p->trim_size_x)
+			p->p_trimmed[y][x++] = p->piece[p->start_y][p->start_x++];
+		p->p_trimmed[y][x] = '\0';
+		p->start_y++;
 		y++;
 	}
-	piece->p_trimmed[y] = NULL;
-	cleaner(piece->piece);
+	p->p_trimmed[y] = NULL;
+	cleaner(p->piece);
 }
 
-void				piece_mode(t_piece *piece, char *line, int fd)
+void				piece_mode(t_piece *p, char *line, int fd)
 {
-	fetch_piece_size(piece, line);
-	fetch_piece(piece, fd);
-	tailor(piece, -1, -1);
-	trim_piece(piece);
+	fetch_piece_size(p, line);
+	fetch_piece(p, fd);
+	tailor(p, -1, -1);
+	trim_piece(p);
 }

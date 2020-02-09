@@ -6,86 +6,102 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 10:09:01 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/07 14:32:32 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/09 12:59:38 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-static int			hot(t_map *map, t_piece *piece, t_heat *heat)
+static int		hot(t_map *map, t_piece *p, t_heat *heat)
 {
 	if (ft_strcmp(heat->hot, "br") == 0)
-		if (!(placing_br(map, piece)))
+		if (!(placing_br(map, p)))
 			return (0);
 	if (ft_strcmp(heat->hot, "bl") == 0)
-		if (!(placing_bl(map, piece)))
+		if (!(placing_bl(map, p)))
 			return (0);
 	if (ft_strcmp(heat->hot, "tr") == 0)
-		if (!(placing_tr(map, piece)))
+		if (!(placing_tr(map, p)))
 			return (0);
 	if (ft_strcmp(heat->hot, "tl") == 0)
-		if (!(placing_tl(map, piece)))
+		if (!(placing_tl(map, p)))
 			return (0);
 	return (1);
 }
 
-static int			warm(t_map *map, t_piece *piece, t_heat *heat)
+static int		warm(t_map *map, t_piece *p, t_heat *heat)
 {
 	if (ft_strcmp(heat->warm, "br") == 0)
-		if (!(placing_br(map, piece)))
+		if (!(placing_br(map, p)))
 			return (0);
 	if (ft_strcmp(heat->warm, "bl") == 0)
-		if (!(placing_bl(map, piece)))
+		if (!(placing_bl(map, p)))
 			return (0);
 	if (ft_strcmp(heat->warm, "tr") == 0)
-		if (!(placing_tr(map, piece)))
+		if (!(placing_tr(map, p)))
 			return (0);
 	if (ft_strcmp(heat->warm, "tl") == 0)
-		if (!(placing_tl(map, piece)))
+		if (!(placing_tl(map, p)))
 			return (0);
 	return (1);
 }
 
-static int			luke_warm(t_map *map, t_piece *piece, t_heat *heat)
+static int		luke_warm(t_map *map, t_piece *p, t_heat *heat)
 {
 	if (ft_strcmp(heat->luke_warm, "br") == 0)
-		if (!(placing_br(map, piece)))
+		if (!(placing_br(map, p)))
 			return (0);
 	if (ft_strcmp(heat->luke_warm, "bl") == 0)
-		if (!(placing_bl(map, piece)))
+		if (!(placing_bl(map, p)))
 			return (0);
 	if (ft_strcmp(heat->luke_warm, "tr") == 0)
-		if (!(placing_tr(map, piece)))
+		if (!(placing_tr(map, p)))
 			return (0);
 	if (ft_strcmp(heat->luke_warm, "tl") == 0)
-		if (!(placing_tl(map, piece)))
+		if (!(placing_tl(map, p)))
 			return (0);
 	return (1);
 }
 
-static int			cold(t_map *map, t_piece *piece, t_heat *heat)
+static int		cold(t_map *map, t_piece *p, t_heat *heat)
 {
 	if (ft_strcmp(heat->cold, "br") == 0)
-		if (!(placing_br(map, piece)))
+		if (!(placing_br(map, p)))
 			return (0);
 	if (ft_strcmp(heat->cold, "bl") == 0)
-		if (!(placing_bl(map, piece)))
+		if (!(placing_bl(map, p)))
 			return (0);
 	if (ft_strcmp(heat->cold, "tr") == 0)
-		if (!(placing_tr(map, piece)))
+		if (!(placing_tr(map, p)))
 			return (0);
 	if (ft_strcmp(heat->cold, "tl") == 0)
-		if (!(placing_tl(map, piece)))
+		if (!(placing_tl(map, p)))
 			return (0);
 	return (1);
 }
 
-int					placing_dispatcher(t_map *map, t_piece *piece, t_heat *heat)
+int				placing_dispatcher(t_map *map, t_piece *p, t_heat *heat)
 {
-	if (!hot(map, piece, heat))
-		if (!warm(map, piece, heat))
-			if (!luke_warm(map, piece, heat))
-				if (!cold(map, piece, heat))
-					return (0);
+	if (map->hot == 1)
+	{
+		if (!hot(map, p, heat))
+			if (!warm(map, p, heat))
+				if (!luke_warm(map, p, heat))
+					if (!cold(map, p, heat))
+						{
+							map->hot = 0;
+							return (0);
+						}
+	}
+	else
+	{
+		if (!warm(map, p, heat))
+			if (!luke_warm(map, p, heat))
+				if (!cold(map, p, heat))
+					{
+						map->hot = 1;
+						return (0);
+					}
+	}
 	return (1);
 }

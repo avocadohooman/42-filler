@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 12:25:16 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/07 15:38:28 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/09 13:21:54 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,31 +32,29 @@ static void			initiate_struct_map(t_map *map)
 	map->check_sum = 0;
 	map->token_pos_en = 0;
 	map->token_pos_me = 0;
-	map->local_x = 0; //
-	map->local_y = 0; //
-	map->flip = 0;
+	map->hot = 1;
 }
 
-static void			initiate_struct_piece(t_piece *piece)
+static void			initiate_struct_piece(t_piece *p)
 {
-	piece->piece = NULL;
-	piece->p_trimmed = NULL;
-	piece->size_x = 0;
-	piece->size_y = 0;
-	piece->check_sum = 0;
-	piece->distance_x = 0;
-	piece->distance_y = 0;
-	piece->start_x = 0;
-	piece->start_y = 0;
-	piece->trim_x = 0;
-	piece->trim_y = 0;
-	piece->trim_size_x = 0;
-	piece->trim_size_y = 0;
-	piece->final_x = 0;
-	piece->final_y = 0;
+	p->piece = NULL;
+	p->p_trimmed = NULL;
+	p->size_x = 0;
+	p->size_y = 0;
+	p->check_sum = 0;
+	p->distance_x = 0;
+	p->distance_y = 0;
+	p->start_x = 0;
+	p->start_y = 0;
+	p->trim_x = 0;
+	p->trim_y = 0;
+	p->trim_size_x = 0;
+	p->trim_size_y = 0;
+	p->final_x = 0;
+	p->final_y = 0;
 }
 
-static void			initiate_struct_heat(t_heat *heat, t_map *map)
+static void			initiate_struct_heat(t_heat *heat)
 {
 	heat->array[0] = 0;
 	heat->array[1] = 0;
@@ -66,19 +64,11 @@ static void			initiate_struct_heat(t_heat *heat, t_map *map)
 	heat->warm = NULL;
 	heat->luke_warm = NULL;
 	heat->cold = NULL;
-	heat->br_end_x = map->size_x;
-	heat->br_end_y = map->size_y;
-	heat->bl_end_x = 0;
-	heat->bl_end_y = map->size_y;
-	heat->tr_end_x = map->size_x;
-	heat->tr_end_y = 0;
-	heat->tl_end_x = 0;
-	heat->tl_end_y = 0;
 }
 
-void				initiate_structs(t_map *map, t_piece *piece, t_heat *heat)
+void				initiate_structs(t_map *map, t_piece *p, t_heat *heat)
 {
 	initiate_struct_map(map);
-	initiate_struct_piece(piece);
-	initiate_struct_heat(heat, map);
+	initiate_struct_piece(p);
+	initiate_struct_heat(heat);
 }
