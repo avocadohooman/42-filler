@@ -1,1 +1,0 @@
-./gmolin.filler maps_testing/error_3_small_map.txt 
