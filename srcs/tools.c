@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 09:25:45 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/09 13:21:59 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/10 11:07:27 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int				heat_counter(t_map *map, int start_y, int start_x)
 	return (count);
 }
 
-int		validator(t_map *map, t_piece *p)
+int				validator(t_map *map, t_piece *p)
 {
 	int		goal;
 	int		current;
@@ -57,7 +57,7 @@ int		validator(t_map *map, t_piece *p)
 	return (0);
 }
 
-int		count_pieces(char **area, char *needle, int min_y, int min_x)
+int				count_pieces(char **area, char *needle, int min_y, int min_x)
 {
 	int	count;
 	int	y;
@@ -79,7 +79,7 @@ int		count_pieces(char **area, char *needle, int min_y, int min_x)
 	return (count);
 }
 
-void	tailor(t_piece *p, int y, int x)
+void			tailor(t_piece *p, int y, int x)
 {
 	y = -1;
 	p->start_x = p->size_x;
@@ -106,7 +106,7 @@ void	tailor(t_piece *p, int y, int x)
 	(p->trim_size_y > p->size_y) ? p->trim_size_y -= 1 : 0;
 }
 
-void	cleaner(char **str)
+void			cleaner(char **str)
 {
 	int		i;
 

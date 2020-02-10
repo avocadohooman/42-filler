@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 14:28:22 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/06 14:56:13 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/10 09:43:15 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void		draw_square(int start_x, int start_y, int size, t_env *p)
 	}
 }
 
-void		draw_rectangle(int start_x, int start_y, t_env *p)
+void		draw_rectangle(int x, int y, t_env *p)
 {
 	int		i;
 	int		i2;
@@ -53,10 +53,10 @@ void		draw_rectangle(int start_x, int start_y, t_env *p)
 		i = 0;
 		while (i < (p->width * 4))
 		{
-			p->ret[i + t + ((start_y * WIDTH * 4) + (start_x * 4))] = p->red;
-			p->ret[i + t + 1 + ((start_y * WIDTH * 4) + (start_x * 4))] = p->green;
-			p->ret[i + t + 2 + ((start_y * WIDTH * 4) + (start_x * 4))] = p->blue;
-			p->ret[i + t + 3 + ((start_y * WIDTH * 4) + (start_x * 4))] = 0;
+			p->ret[i + t + ((y * WIDTH * 4) + (x * 4))] = p->red;
+			p->ret[i + t + 1 + ((y * WIDTH * 4) + (x * 4))] = p->green;
+			p->ret[i + t + 2 + ((y * WIDTH * 4) + (x * 4))] = p->blue;
+			p->ret[i + t + 3 + ((y * WIDTH * 4) + (x * 4))] = 0;
 			i += 4;
 		}
 		i2 += 4;
@@ -64,7 +64,7 @@ void		draw_rectangle(int start_x, int start_y, t_env *p)
 	}
 }
 
-void		draw_rectangle2(int start_x, int start_y, t_env *p)
+void		draw_rectangle2(int x, int y, t_env *p)
 {
 	int		i;
 	int		i2;
@@ -77,13 +77,13 @@ void		draw_rectangle2(int start_x, int start_y, t_env *p)
 		i = 0;
 		while (i < (p->width * 4))
 		{
-			p->ret[i + t + ((start_y * WIDTH * 4) + (start_x * 4))] = p->red;
-			p->ret[i + t + 1 + ((start_y * WIDTH * 4) + (start_x * 4))] = p->green;
-			p->ret[i + t + 2 + ((start_y * WIDTH * 4) + (start_x * 4))] = p->blue;
-			p->ret[i + t + 3 + ((start_y * WIDTH * 4) + (start_x * 4))] = 0;
+			p->ret[i + t + ((y * WIDTH * 4) + (x * 4))] = p->red;
+			p->ret[i + t + 1 + ((y * WIDTH * 4) + (x * 4))] = p->green;
+			p->ret[i + t + 2 + ((y * WIDTH * 4) + (x * 4))] = p->blue;
+			p->ret[i + t + 3 + ((y * WIDTH * 4) + (x * 4))] = 0;
 			i += 4;
 		}
-		start_y -= 3;
+		y -= 3;
 		i2 += 4;
 		t += (WIDTH * 4);
 	}

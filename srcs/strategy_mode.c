@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 11:35:16 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/09 13:21:16 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/10 11:22:41 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static	void	big_map(t_map *map)
 	else if (map->pos_me_y > map->start_y / 2 && map->pos_me_y > map->pos_en_y)
 	{
 		map->start_y = map->pos_en_y + 40;
-		map->start_x = map->size_x / 2;
+		map->start_x = 2;
 	}
 }
 
@@ -86,8 +86,8 @@ static	void	small_map(t_map *map)
 		}
 		else
 		{
-			map->start_y = map->pos_en_y - 4;
-			map->start_x = map->pos_en_x + 6;
+			map->start_y = map->size_y / 2 - 3;
+			map->start_x = map->size_x / 2 + 3;
 		}
 	}
 }

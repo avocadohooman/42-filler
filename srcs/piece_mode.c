@@ -6,13 +6,13 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 15:41:48 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/09 11:38:22 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/10 10:06:41 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-static void		fetch_piece_size(t_piece *p, char *line)
+static void			fetch_piece_size(t_piece *p, char *line)
 {
 	int	i;
 
@@ -22,7 +22,7 @@ static void		fetch_piece_size(t_piece *p, char *line)
 	ft_strdel(&line);
 }
 
-static void		fetch_pos(t_piece *p)
+static void			fetch_pos(t_piece *p)
 {
 	int		x;
 	int		y;
@@ -47,7 +47,7 @@ static void		fetch_pos(t_piece *p)
 	}
 }
 
-static void		fetch_piece(t_piece *p, int fd)
+static void			fetch_piece(t_piece *p, int fd)
 {
 	int		k;
 	char	*line;

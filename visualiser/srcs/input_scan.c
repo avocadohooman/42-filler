@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 14:24:13 by gmolin            #+#    #+#             */
-/*   Updated: 2020/02/06 15:41:34 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/10 09:47:36 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void			fetch_player_name(char *line, t_env *p)
 void			fetch_map(t_env *p)
 {
 	int		k;
-    char	*line;
+	char	*line;
 
 	k = 0;
 	ft_get_next_line(0, &line);
@@ -51,22 +51,22 @@ void			fetch_map(t_env *p)
 	p->map = (char**)malloc(sizeof(char*) * p->map_size_y + 1);
 	while (k < p->map_size_y && ft_get_next_line(0, &line) == 1)
 	{
-    	p->map[k] = ft_strdup((const char*)&line[4]);
-    	ft_strdel(&line);
-    	k++;
+		p->map[k] = ft_strdup((const char*)&line[4]);
+		ft_strdel(&line);
+		k++;
 	}
 	p->map[k] = NULL;
 }
 
 void			fetch_map_size(char *line, t_env *p)
 {
-    int     i;
+	int		i;
 
 	p->map_size_x = 0;
 	p->map_size_y = 0;
-    p->map_size_y = ft_atoi(&line[8]);
-    i = 8 + ft_len(p->map_size_y);
-    p->map_size_x = ft_atoi(&line[i]);
+	p->map_size_y = ft_atoi(&line[8]);
+	i = 8 + ft_len(p->map_size_y);
+	p->map_size_x = ft_atoi(&line[i]);
 	ft_strdel(&line);
 	fetch_map(p);
 }

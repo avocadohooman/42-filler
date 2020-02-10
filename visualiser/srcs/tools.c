@@ -6,7 +6,7 @@
 /*   By: gmolin <gmolin@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 15:42:27 by lcharvol          #+#    #+#             */
-/*   Updated: 2020/02/06 14:33:18 by gmolin           ###   ########.fr       */
+/*   Updated: 2020/02/10 09:52:19 by gmolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,3 @@ void		print_final(t_env *p)
 	mlx_string_put(p->mlx, p->win, (WIDTH / 2) + 120, (HEIGHT / 2) + 175,
 		0x67E8BA, str);
 }
-
