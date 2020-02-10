@@ -1,1 +1,0 @@
-resources/filler_vm -p1 resources/players/gmolin.filler -p2 resources/players/champely.filler -f resources/maps/map00
