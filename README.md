@@ -17,4 +17,4 @@ For future developments:
 
 # Preview
 
-![Preview #1](/readme_assets/preview #1.png)
+<img src="https://raw.githubusercontent.com/avocadohooman/42-filler/master/readme_assets/preview%20%231.png"></img>
