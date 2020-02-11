@@ -11,7 +11,9 @@ cd resources
 ```
 
 # Notes by the Creator
-The algorithm used for this project is pretty effective, but not efficient. I decided to stop working on the algorithm as soon as I achieved an average winning ration of 80% against all bots on all maps.
+The algorithm used for this project is pretty effective, but not efficient. I decided to stop working on the algorithm as soon as I achieved an average winning ration of 80% against all bots, provided by the subject, on all maps.
+
+Especially on map02 my algo becomes really slow and it surfaces the weaks spots of my algorithm against more sophisticated algorithms by other players. 
 
 For future developments:
 - Improve efficency and speed by improving placing strategy (placing first closer to the enemy, then fill the rest of the field)
