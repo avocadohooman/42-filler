@@ -7,13 +7,13 @@ The game ends when a piece cannot be placed. A small fun game project.
 ```
 git clone https://github.com/avocadohooman/42-filler.git | cd 42-filler
 cd resources
-./filler_vm -f maps/map02 -p1 players/gmolin.filler -p2 players/superjeannot.filler | ./visual
+./filler_vm -f maps/map01 -p1 players/gmolin.filler -p2 players/superjeannot.filler | ./visual
 ```
 
 # Notes by the Creator
-The algorithm used for this project is pretty effective, but not efficient. I decided to stop working on the algorithm as soon as I achieved an average winning ration of 80% against all bots, provided by the subject, on all maps.
+The algorithm used for this project is pretty effective, but not efficient. I decided to stop working on the algorithm as soon as I achieved an average winning ratio of 80% against all bots, which were provided by the subject, on all maps.
 
-Especially on map02 my algo becomes really slow and it surfaces the weaks spots of my algorithm against more sophisticated algorithms by other players. 
+Especially on map02 my algo becomes really slow and it surfaces the weak spots of my algorithm against more sophisticated algorithms by other players. 
 
 For future developments:
 - Improve efficency and speed by improving placing strategy (placing first closer to the enemy, then fill the rest of the field)
