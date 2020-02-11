@@ -17,4 +17,4 @@ For future developments:
 
 # Preview
 
-![GitHub Logo](./readme_assets/preview #1.png)
+![Preview #1](/readme_assets/preview #1.png)
