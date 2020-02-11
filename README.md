@@ -17,3 +17,4 @@ For future developments:
 
 # Preview
 
+[Preview](readme_assets/preview #1.png)
