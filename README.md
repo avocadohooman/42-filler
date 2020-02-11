@@ -6,7 +6,8 @@ The game ends when a piece cannot be placed. A small fun game project.
 # Usage
 ```
 git clone https://github.com/avocadohooman/42-filler.git | cd 42-filler
-cd resources & ./filler_vm -f maps/map02 -p1 players/gmolin.filler -p2 players/superjeannot.filler | ./visual
+cd resources
+./filler_vm -f maps/map02 -p1 players/gmolin.filler -p2 players/superjeannot.filler | ./visual
 ```
 
 # Notes by the Creator
